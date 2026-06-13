@@ -197,7 +197,7 @@
             color: #fdda24;
             text-shadow: 0 0 8px #fdda24;
         ">
-            💬 JAWI Radio Chat Room
+            💬 Music Vibes Chat Room
         </h2>
 
         <iframe 
@@ -252,33 +252,6 @@ playBtn.addEventListener('click', () => {
     <h2>Connect</h2>
     <p>Email: uc5521@gmail.com</p>
 </section>
-
-<script>
-// Fetch metadata from Zeno API
-async function updateNowPlaying() {
-    try {
-        const response = await fetch("https://api.zeno.fm/mounts/metadata/axipqkdhsiitv");
-        const data = await response.json();
-
-        const nowPlayingBar = document.getElementById("nowPlaying");
-
-        if (data && data.title) {
-            nowPlayingBar.textContent = "🎵 Now Playing: " + data.title;
-        } else {
-            nowPlayingBar.textContent = "🎵 Live on JAWI Radio";
-        }
-    } catch (e) {
-        document.getElementById("nowPlaying").textContent = "🎵 Live on JAWI Radio";
-    }
-}
-
-// Update every 12 seconds
-updateNowPlaying();
-setInterval(updateNowPlaying, 12000);
-</script>
-    
-    
-</body>
 
 <body>
 
