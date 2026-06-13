@@ -74,13 +74,13 @@
 
 <section>
     <h2>Featured Station of the Week</h2>
- <div style="
+<div style="
     max-width: 420px;
     margin: 40px auto;
     padding: 20px;
     background: #111;
     border-radius: 14px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
     text-align: center;
     border: 2px solid #009b3a;
     font-family: 'Segoe UI', sans-serif;
@@ -93,95 +93,68 @@
         color: #fdda24;
         text-shadow: 0 0 8px #fdda24;
     ">
-        🇯🇲 JAWI Radio Live
+         Infin8Radio
     </h2>
 
-    <!-- Spinning Vinyl Record -->
+    <!-- 3D Spinning Vinyl -->
     <div id="vinyl" style="
-        width: 180px;
-        height: 180px;
+        width: 220px;
+        height: 220px;
         margin: 0 auto 20px auto;
         border-radius: 50%;
-        background: radial-gradient(circle, #000 40%, #222 60%, #000 100%);
-        border: 4px solid #da291c;
+        background: radial-gradient(circle at 30% 30%, #333 0%, #111 40%, #000 70%);
+        border: 6px solid #000;
         position: relative;
         animation: spin 4s linear infinite;
         animation-play-state: paused;
+        box-shadow:
+            inset 0 0 20px rgba(0,0,0,0.8),
+            0 10px 20px rgba(0,0,0,0.6);
+        transform: perspective(600px) rotateX(18deg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
     ">
-        <!-- Center Label -->
+
+        <!-- Grooves -->
         <div style="
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #009b3a, #fdda24, #da291c);
-            border-radius: 50%;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 0 0 10px rgba(255,255,255,0.3);
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: repeating-radial-gradient(
+                circle,
+                rgba(255,255,255,0.05) 0px,
+                rgba(255,255,255,0.05) 2px,
+                rgba(0,0,0,0.2) 3px,
+                rgba(0,0,0,0.2) 6px
+            );
+            pointer-events: none;
         "></div>
+
+        <!-- Center Label + Play Button -->
+        <button id="playBtn" style="
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: none;
+            background: radial-gradient(circle at 30% 30%, #fdda24, #009b3a, #da291c);
+            color: #000;
+            font-size: 26px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow:
+                inset 0 0 10px rgba(0,0,0,0.5),
+                0 0 12px rgba(255,255,255,0.4);
+            z-index: 10;
+        ">
+            ▶
+        </button>
+
     </div>
 
-    <!-- Custom Play/Pause Button -->
-    <button id="playBtn" style="
-        background: #009b3a;
-        color: #fff;
-        border: none;
-        padding: 12px 25px;
-        font-size: 18px;
-        border-radius: 8px;
-        cursor: pointer;
-        box-shadow: 0 0 10px #009b3a;
-    ">
-        ▶ Play
-    </button>
-
     <!-- Audio Element -->
-    <audio id="audioPlayer">
-        <source src="https://stream.zeno.fm/axipqkdhsiitv" type="audio/mpeg">
-    </audio>
 
-    <!-- Rasta Accent Bar -->
-    <div style="
-        height: 6px;
-        width: 100%;
-        background: linear-gradient(to right, #009b3a, #fdda24, #da291c);
-        border-radius: 4px;
-        margin-top: 15px;
-    "></div>
-
-</div>
-
-<!-- Spin Animation -->
-<style>
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to   { transform: rotate(360deg); }
-}
-</style>
-
-<!-- Player Logic -->
-<script>
-const audio = document.getElementById('audioPlayer');
-const vinyl = document.getElementById('vinyl');
-const playBtn = document.getElementById('playBtn');
-
-playBtn.addEventListener('click', () => {
-    if (audio.paused) {
-        audio.play();
-        vinyl.style.animationPlayState = 'running';
-        playBtn.textContent = '⏸ Pause';
-        playBtn.style.background = '#da291c';
-        playBtn.style.boxShadow = '0 0 10px #da291c';
-    } else {
-        audio.pause();
-        vinyl.style.animationPlayState = 'paused';
-        playBtn.textContent = '▶ Play';
-        playBtn.style.background = '#009b3a';
-        playBtn.style.boxShadow = '0 0 10px #009b3a';
-    }
-});
-</script>
 
        
         Coming soon</span> — Other services offered at JAMEXUS.</p>
