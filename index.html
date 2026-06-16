@@ -161,17 +161,19 @@ playBtn.addEventListener('click', async () => {
 });
 </script>
 
-<!-- METADATA SCRIPT -->
+<!-- UPDATED METADATA SCRIPT (USING YOUR REAL MOUNT) -->
 <script>
 async function updateMetadata() {
     const nowBar = document.getElementById("nowPlaying");
     const listenerBar = document.getElementById("listenerCount");
 
     try {
-        const response = await fetch("https://api.zeno.fm/mounts/metadata/axipqkdhsiitv?cache=" + Date.now());
+        const response = await fetch("https://api.zeno.fm/mounts/metadata/u6ayd9bmunhvv?cache=" + Date.now());
         const data = await response.json();
 
-        nowBar.textContent = data.now_playing ? "🎵 Now Playing: " + data.now_playing : "🎵 Now Playing: Live Stream";
+        nowBar.textContent = data.now_playing 
+            ? "🎵 Now Playing: " + data.now_playing 
+            : "🎵 Now Playing: Live Stream";
 
         if (data.listeners !== undefined) {
             listenerBar.textContent = "🔊 Live listeners: " + data.listeners;
