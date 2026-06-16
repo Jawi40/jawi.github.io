@@ -30,7 +30,7 @@ header p {
     opacity: 0.9;
 }
 
-/* ===== NAVIGATION (MATCHES HEADER) ===== */
+/* ===== NAVIGATION ===== */
 nav {
     display: flex;
     justify-content: center;
@@ -63,11 +63,11 @@ section {
     margin: auto;
 }
 
-/* ===== SECTION DIVIDER (Jamaican green + red neon) ===== */
+/* ===== SECTION DIVIDER ===== */
 .section-divider {
     width: 100%;
     height: 3px;
-    background: linear-gradient(90deg, #009b3a, #da291c);
+    background: linear-gradient(90deg, #009b3a, #da291c); /* Jamaican green + red */
     box-shadow: 0 0 12px #009b3a, 0 0 12px #da291c;
     margin: 40px 0;
 }
