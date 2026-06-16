@@ -102,7 +102,7 @@ section h2 {
 }
 
 /* ===========================
-   FLEX ROW (PLAYER + CHAT)
+   FLEX ROW
    =========================== */
 .flex-row {
     display: flex;
@@ -154,7 +154,6 @@ section h2 {
     width: 260px;
     height: 260px;
     margin: 0 auto 25px auto;
-    transform: perspective(700px) rotateX(18deg);
 }
 
 .vinyl {
@@ -169,6 +168,12 @@ section h2 {
     align-items: center;
     justify-content: center;
     position: relative;
+    z-index: 2;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .vinyl-lines {
@@ -190,6 +195,7 @@ section h2 {
     background: radial-gradient(circle, #fdda24, #009b3a, #da291c);
 }
 
+/* PLAY BUTTON */
 .play-btn {
     position: absolute;
     width: 75px;
@@ -199,23 +205,24 @@ section h2 {
     background: radial-gradient(circle, #fdda24, #009b3a, #da291c);
     font-size: 32px;
     cursor: pointer;
+    z-index: 3;
 }
 
 /* ===========================
-   TONEARM + NEEDLE (RESTORED)
+   TONEARM + NEEDLE
    =========================== */
 .tonearm {
     position: absolute;
-    width: 140px;
+    width: 150px;
     height: 12px;
     background: #ccc;
     top: 20px;
-    right: -40px;
+    right: -30px;
     border-radius: 6px;
     transform-origin: left center;
     transform: rotate(0deg);
     transition: transform 0.4s ease;
-    z-index: 5;
+    z-index: 4;
 }
 
 .needle {
@@ -223,21 +230,13 @@ section h2 {
     width: 20px;
     height: 40px;
     background: #222;
-    top: 40px;
-    right: -55px;
+    top: -14px;
+    right: -10px;
     border-radius: 4px;
     transform-origin: top center;
     transform: rotate(0deg);
     transition: transform 0.4s ease;
-    z-index: 6;
-}
-
-/* ===========================
-   VINYL SPIN ANIMATION
-   =========================== */
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+    z-index: 5;
 }
 
 /* ===========================
@@ -256,39 +255,5 @@ section h2 {
     .chat-box {
         width: 100% !important;
         max-width: 420px;
-    }
-}
-
-/* ===========================
-   MOBILE NAV FIX
-   =========================== */
-@media (max-width: 600px) {
-
-    nav {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-        padding: 12px 0;
-    }
-
-    nav a {
-        font-size: 16px;
-        padding: 6px 12px;
-        white-space: nowrap;
-    }
-}
-
-@media (max-width: 420px) {
-
-    nav {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    nav a {
-        width: 100%;
-        text-align: center;
-        padding: 10px 0;
-        font-size: 18px;
     }
 }
