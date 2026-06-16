@@ -245,8 +245,8 @@ section h2 {
 
 
 .chat-frame {
-    width: 100%;
-    height: 650px;  /* visible height */
+    width: 150%;
+    height: 500px;  /* visible height */
     border: none;
     border-radius: 10px;
     display: block;
