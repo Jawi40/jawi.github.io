@@ -33,7 +33,7 @@ body {
    PLAYER BOX (30% SMALLER)
    =========================== */
 .player-box {
-    width: 200px; /* was 180px */
+    width: 300px; /* was 180px */
     background: #111;
     padding: 7px; /* smaller padding */
     border-radius: 10px;
@@ -78,8 +78,8 @@ body {
 }
 
 .vinyl-center {
-    width: 35px; /* was 50px */
-    height: 35px;
+    width: 50px; /* was 50px */
+    height: 50px;
     border-radius: 50%;
     background: radial-gradient(circle, #fdda24, #009b3a, #da291c);
 }
