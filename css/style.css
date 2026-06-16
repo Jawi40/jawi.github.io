@@ -257,7 +257,7 @@ section h2 {
 /* ===========================
    CHAT BOX (FIXED SIZING)
    =========================== */
-.chat-box {
+chat-box {
     width: 380px;
     background: #111;
     padding: 20px;
@@ -265,6 +265,7 @@ section h2 {
     border: 2px solid #009b3a;
     text-align: center;
     box-sizing: border-box;
+    overflow: hidden; /* prevents inner box from floating */
 }
 
 .chat-title {
