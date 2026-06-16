@@ -1,0 +1,7 @@
+.section-divider {
+    width: 100%;
+    height: 3px;
+    background: #00e0ff;
+    box-shadow: 0 0 10px #00e0ff;
+    margin: 40px 0;
+}
