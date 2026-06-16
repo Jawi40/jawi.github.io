@@ -14,7 +14,7 @@ body {
    PAGE WRAPPER
    =========================== */
 .page-wrapper {
-    max-width: 1000px;
+    max-width: 900px; /* smaller */
     margin: 0 auto;
     padding: 0 10px;
 }
@@ -25,39 +25,39 @@ body {
 .flex-row {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 15px; /* smaller gap */
     flex-wrap: wrap;
 }
 
 /* ===========================
-   PLAYER BOX (COMPACT)
+   PLAYER BOX (30% SMALLER)
    =========================== */
 .player-box {
-    width: 180px;
+    width: 130px; /* was 180px */
     background: #111;
-    padding: 10px;
-    border-radius: 12px;
+    padding: 7px; /* smaller padding */
+    border-radius: 10px;
     border: 2px solid #009b3a;
     text-align: center;
     box-sizing: border-box;
 }
 
 /* ===========================
-   VINYL PLAYER (SMALLER)
+   VINYL PLAYER (30% SMALLER)
    =========================== */
 .vinyl-wrapper {
     position: relative;
-    width: 120px;
-    height: 120px;
-    margin: 0 auto 10px auto;
+    width: 85px;   /* was 120px */
+    height: 85px;
+    margin: 0 auto 8px auto;
 }
 
 .vinyl {
-    width: 120px;
-    height: 120px;
+    width: 85px;
+    height: 85px;
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, #666, #222 40%, #000 80%);
-    border: 4px solid #000;
+    border: 3px solid #000;
     animation: spin 4s linear infinite;
     animation-play-state: paused;
     display: flex;
@@ -78,20 +78,20 @@ body {
 }
 
 .vinyl-center {
-    width: 50px;
-    height: 50px;
+    width: 35px; /* was 50px */
+    height: 35px;
     border-radius: 50%;
     background: radial-gradient(circle, #fdda24, #009b3a, #da291c);
 }
 
 .play-btn {
     position: absolute;
-    width: 45px;
-    height: 45px;
+    width: 32px; /* was 45px */
+    height: 32px;
     border-radius: 50%;
     border: none;
     background: radial-gradient(circle, #fdda24, #009b3a, #da291c);
-    font-size: 20px;
+    font-size: 14px;
     cursor: pointer;
     z-index: 3;
     top: 50%;
@@ -100,58 +100,58 @@ body {
 }
 
 /* ===========================
-   TONEARM (SMALLER)
+   TONEARM (30% SMALLER)
    =========================== */
 .tonearm {
     position: absolute;
-    width: 90px;
-    height: 8px;
+    width: 60px; /* was 90px */
+    height: 6px;
     background: #ccc;
-    top: 20px;
-    right: -12px;
-    border-radius: 5px;
+    top: 14px;
+    right: -10px;
+    border-radius: 4px;
     transform-origin: left center;
     transition: transform 0.4s ease;
 }
 
 .needle {
     position: absolute;
-    width: 12px;
-    height: 24px;
+    width: 9px; /* was 12px */
+    height: 18px;
     background: #222;
-    top: -8px;
-    right: -6px;
-    border-radius: 4px;
+    top: -6px;
+    right: -5px;
+    border-radius: 3px;
     transform-origin: top center;
     transition: transform 0.4s ease;
 }
 
 /* ===========================
-   CHAT BOX (COMPACT)
+   CHAT BOX (30% SMALLER)
    =========================== */
 .chat-box {
-    width: 260px;
+    width: 180px; /* was 260px */
     background: #111;
-    padding: 10px;
-    border-radius: 12px;
+    padding: 7px;
+    border-radius: 10px;
     border: 2px solid #009b3a;
     text-align: center;
     box-sizing: border-box;
 
-    height: 450px;
-    overflow-y: auto; /* scroll inside */
+    height: 315px; /* was 450px */
+    overflow-y: auto;
 }
 
 .chat-frame {
     width: 100%;
     height: 100%;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     display: block;
 }
 
 /* ===========================
-   MOBILE
+   MOBILE (ALSO 30% SMALLER)
    =========================== */
 @media (max-width: 700px) {
 
@@ -161,8 +161,8 @@ body {
     }
 
     .chat-box {
-        width: 100%;
-        height: 400px;
+        width: 90%;
+        height: 300px;
     }
 
     .chat-frame {
