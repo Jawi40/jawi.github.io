@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Me</title>
+    <title>About – JAMEXUS SERVICES</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
-<!-- Shared Header -->
 <div id="header"></div>
 <script>
   fetch("partials/header.html")
@@ -16,32 +16,22 @@
     .then(t => document.getElementById("header").innerHTML = t);
 </script>
 
-<!-- Page Content -->
-<main style="padding: 20px; max-width: 900px; margin: auto;">
-    <h1>About Me</h1>
-    <p>
-        Welcome to the About Me page. This is where you can introduce yourself, your mission,
-        your background, or what JAMEXUS SERVICES is all about.
-    </p>
+<section>
+    <h2>About Me</h2>
+    <p>Hello, I’m <span class="highlight">JAWI</span>. I’ve always been passionate about music, culture, and the digital world. JAMEXUS SERVICES is my space to share what I create, what I learn, and how I help others explore the world of internet radio and digital entertainment.</p>
 
-    <h2>Who I Am</h2>
-    <p>
-        Write a short bio here — who you are, what you do, and what drives you.
-    </p>
+    <p>From DJing virtual parties to hosting live streams, I bring energy, vibes, and a love for music to every project. My goal is to connect people through sound and creativity.</p>
+</section>
 
-    <h2>What I Do</h2>
-    <p>
-        Describe your services, skills, or experience. This is a great place to explain
-        what makes you unique.
-    </p>
+<div class="section-divider"></div>
 
-    <h2>My Goals</h2>
-    <p>
-        Share your vision, long‑term goals, or what you want your visitors to know about you.
-    </p>
-</main>
+<section>
+    <h2>My Mission</h2>
+    <p>To inspire, entertain, and empower others through music, technology, and creativity — while keeping the Jamaican spirit alive with every beat.</p>
+</section>
 
-<!-- Shared Footer -->
+<div class="section-divider"></div>
+
 <div id="footer"></div>
 <script>
   fetch("partials/footer.html")
