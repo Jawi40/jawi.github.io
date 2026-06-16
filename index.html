@@ -81,7 +81,6 @@
 <section>
     <h2>Featured Station of the Week</h2>
 
-    <!-- FLEX: PLAYER + CHAT SIDE BY SIDE -->
     <div style="
         display: flex;
         justify-content: center;
@@ -91,7 +90,7 @@
         margin-top: 40px;
     ">
 
-        <!-- LEFT: PLAYER COLUMN -->
+        <!-- LEFT: PLAYER -->
         <div style="
             width: 380px;
             padding: 20px;
@@ -110,7 +109,7 @@
                 text-shadow: 0 0 8px #fdda24;
             ">Infin8Radio</h2>
 
-            <!-- NOW PLAYING BAR -->
+            <!-- NOW PLAYING ONLY -->
             <div id="nowPlaying" style="
                 width: 100%;
                 padding: 10px;
@@ -124,24 +123,9 @@
                 text-shadow: 0 0 8px #009b3a, 0 0 12px #da291c;
             ">🎵 Loading current track...</div>
 
-            <!-- NEXT SONG BAR -->
-            <div id="nextPlaying" style="
-                width: 100%;
-                padding: 8px;
-                margin-bottom: 20px;
-                background: #111;
-                border-radius: 10px;
-                font-size: 16px;
-                font-weight: bold;
-                color: #00e0ff;
-                border: 2px solid #009b3a;
-                text-shadow: 0 0 8px #00e0ff;
-            ">⏭ Loading next track...</div>
-
-            <!-- VINYL + MOVING NEEDLE -->
+            <!-- VINYL + NEEDLE -->
             <div style="position: relative; width: 200px; margin: 0 auto 25px auto;">
 
-                <!-- Tonearm -->
                 <div id="tonearm" style="
                     position: absolute;
                     right: -10px;
@@ -156,7 +140,6 @@
                     z-index: 5;
                 "></div>
 
-                <!-- Needle Head -->
                 <div id="needleHead" style="
                     position: absolute;
                     right: -10px;
@@ -172,7 +155,6 @@
                     z-index: 6;
                 "></div>
 
-                <!-- Vinyl -->
                 <div id="vinyl" style="
                     width: 200px;
                     height: 200px;
@@ -192,7 +174,6 @@
                     margin: 0 auto;
                 ">
 
-                    <!-- Grooves -->
                     <div style="
                         position: absolute;
                         width: 100%;
@@ -208,7 +189,6 @@
                         pointer-events: none;
                     "></div>
 
-                    <!-- Center Label -->
                     <div style="
                         width: 70px;
                         height: 70px;
@@ -219,7 +199,6 @@
                             0 0 18px rgba(253,218,36,0.5);
                     "></div>
 
-                    <!-- Play Button -->
                     <button id="playBtn" style="
                         position: absolute;
                         width: 65px;
@@ -237,14 +216,13 @@
                 </div>
             </div>
 
-            <!-- AUDIO -->
             <audio id="audioPlayer" crossorigin="anonymous" playsinline>
                 <source src="https://stream.zeno.fm/axipqkdhsiitv" type="audio/mpeg">
             </audio>
 
         </div>
 
-        <!-- RIGHT: CHAT ROOM -->
+        <!-- RIGHT: CHAT -->
         <div style="
             width: 380px;
             padding: 15px;
@@ -284,7 +262,7 @@
     <p>Email: uc5521@gmail.com</p>
 </section>
 
-<!-- NEEDLE + VINYL CONTROL SCRIPT -->
+<!-- PLAYER SCRIPT -->
 <script>
 const audio = document.getElementById('audioPlayer');
 const vinyl = document.getElementById('vinyl');
@@ -297,54 +275,39 @@ playBtn.addEventListener('click', () => {
         audio.play();
         vinyl.style.animationPlayState = 'running';
         playBtn.textContent = '⏸';
-
         tonearm.style.transform = 'rotate(22deg)';
         needle.style.transform = 'rotate(22deg)';
     } else {
         audio.pause();
         vinyl.style.animationPlayState = 'paused';
         playBtn.textContent = '▶';
-
         tonearm.style.transform = 'rotate(0deg)';
         needle.style.transform = 'rotate(0deg)';
     }
 });
 </script>
 
-<!-- REAL ZENO METADATA SCRIPT -->
+<!-- CLEAN METADATA SCRIPT (NO NEXT) -->
 <script>
 async function updateMetadata() {
     const nowBar = document.getElementById("nowPlaying");
-    const nextBar = document.getElementById("nextPlaying");
 
     try {
-        const response = await fetch("https://api.zeno.fm/mounts/metadata/infin8radio-g2xs?cache=" + Date.now());
+        const response = await fetch("https://api.zeno.fm/mounts/metadata/axipqkdhsiitv?cache=" + Date.now());
         const data = await response.json();
 
-        // NOW PLAYING
         if (data.now_playing && data.now_playing !== "") {
             nowBar.textContent = "🎵 Now Playing: " + data.now_playing;
         } else {
             nowBar.textContent = "🎵 Now Playing: Live Stream";
         }
 
-        // NEXT SONG
-        if (data.next && data.next !== "") {
-            nextBar.textContent = "⏭ Next: " + data.next;
-        } else {
-            nextBar.textContent = "⏭ Next: Unknown";
-        }
-
     } catch (err) {
         nowBar.textContent = "🎵 Now Playing: Live Stream";
-        nextBar.textContent = "⏭ Next: Unknown";
     }
 }
 
-// Run immediately
 updateMetadata();
-
-// Update every 10 seconds
 setInterval(updateMetadata, 10000);
 </script>
 
