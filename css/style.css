@@ -115,9 +115,9 @@ section h2 {
    PLAYER BOX
    =========================== */
 .player-box {
-    width: 380px;
+    width: 300px;
     background: #111;
-    padding: 20px;
+    padding: 10px;
     border-radius: 14px;
     border: 2px solid #009b3a;
     text-align: center;
@@ -151,14 +151,14 @@ section h2 {
    =========================== */
 .vinyl-wrapper {
     position: relative;
-    width: 260px;
-    height: 260px;
-    margin: 0 auto 25px auto;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px auto;
 }
 
 .vinyl {
-    width: 260px;
-    height: 260px;
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, #666, #222 40%, #000 80%);
     border: 8px solid #000;
