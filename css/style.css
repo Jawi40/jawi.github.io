@@ -229,14 +229,27 @@ section h2 {
         width: 100% !important;
     }
 
-    .player-box,
-   .chat-box {
-    height: auto;
+    .chat-box {
+    width: 380px;
+    background: #111;
+    padding: 20px;
+    border-radius: 14px;
+    border: 2px solid #009b3a;
+    text-align: center;
+    box-sizing: border-box;
+    overflow: hidden;
+
+    height: auto;        /* allow it to grow */
+    min-height: 700px;   /* ensures full chat visibility */
 }
 
+
 .chat-frame {
-    min-height: 650px;
-    height: 100%;
+    width: 100%;
+    height: 650px;  /* visible height */
+    border: none;
+    border-radius: 10px;
+    display: block;
 }
 
 }
