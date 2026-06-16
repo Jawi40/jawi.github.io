@@ -240,7 +240,7 @@ section h2 {
     overflow: hidden;
 
     height: auto;        /* allow it to grow */
-    min-height: 700px;   /* ensures full chat visibility */
+    min-height: 500px;   /* ensures full chat visibility */
 }
 
 
