@@ -292,3 +292,90 @@ chat-box {
     font-weight: bold;
     text-shadow: 0 0 8px #fdda24;
 }
+
+/* ===========================
+   MOBILE RESPONSIVE FIXES
+   =========================== */
+@media (max-width: 600px) {
+
+    /* Reduce section padding */
+    section {
+        padding: 0 10px;
+        margin: 30px auto;
+    }
+
+    /* Header text smaller */
+    header h1 {
+        font-size: 36px;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        gap: 20px;
+        padding: 12px 0;
+    }
+
+    nav a {
+        font-size: 16px;
+    }
+
+    /* Stack player + chat vertically */
+    .flex-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    /* Player box full width */
+    .player-box {
+        width: 95%;
+    }
+
+    /* Chat box full width */
+    .chat-box {
+        width: 95%;
+    }
+
+    /* Vinyl smaller on mobile */
+    .vinyl-wrapper {
+        width: 200px;
+        height: 200px;
+        transform: perspective(600px) rotateX(18deg);
+    }
+
+    .vinyl {
+        width: 200px;
+        height: 200px;
+    }
+
+    .vinyl-center {
+        width: 70px;
+        height: 70px;
+    }
+
+    .play-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 26px;
+    }
+
+    /* Tonearm + needle reposition for smaller vinyl */
+    .tonearm {
+        right: -25px;
+        top: 50px;
+        width: 90px;
+        height: 12px;
+    }
+
+    .needle {
+        right: -25px;
+        top: 50px;
+        width: 22px;
+        height: 32px;
+    }
+
+    /* Chat iframe height reduced for mobile */
+    .chat-frame {
+        height: 400px !important;
+    }
+}
