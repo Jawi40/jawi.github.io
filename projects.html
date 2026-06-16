@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Projects</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+<!-- Shared Header -->
 <div id="header"></div>
 <script>
   fetch("partials/header.html")
@@ -13,9 +16,34 @@
     .then(t => document.getElementById("header").innerHTML = t);
 </script>
 
-<h1>My Projects</h1>
-<p>This is the projects page.</p>
+<!-- Page Content -->
+<main style="padding: 20px; max-width: 900px; margin: auto;">
+    <h1>My Projects</h1>
+    <p>Here are some of the projects and services offered by JAMEXUS SERVICES.</p>
 
+    <section style="margin-top: 30px;">
+        <h2>Project 1</h2>
+        <p>
+            Describe your first project here. What it does, why it matters, and any cool features.
+        </p>
+    </section>
+
+    <section style="margin-top: 30px;">
+        <h2>Project 2</h2>
+        <p>
+            Describe your second project here. You can add images, videos, or links if you want.
+        </p>
+    </section>
+
+    <section style="margin-top: 30px;">
+        <h2>Project 3</h2>
+        <p>
+            Describe your third project here. This page can grow as your business grows.
+        </p>
+    </section>
+</main>
+
+<!-- Shared Footer -->
 <div id="footer"></div>
 <script>
   fetch("partials/footer.html")
