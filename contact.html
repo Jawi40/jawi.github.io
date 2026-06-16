@@ -5,9 +5,31 @@
   <a href="contact.html">Contact</a>
 </nav>
 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
 <div id="header"></div>
 <script>
   fetch("partials/header.html")
-    .then(response => response.text())
-    .then(data => document.getElementById("header").innerHTML = data);
+    .then(r => r.text())
+    .then(t => document.getElementById("header").innerHTML = t);
 </script>
+
+<h1>Contact Me</h1>
+<p>You can put your contact info here.</p>
+
+<div id="footer"></div>
+<script>
+  fetch("partials/footer.html")
+    .then(r => r.text())
+    .then(t => document.getElementById("footer").innerHTML = t);
+</script>
+
+</body>
+</html>
+
