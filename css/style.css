@@ -139,11 +139,11 @@ section h2 {
 }
 
 .chat-frame {
-    width: 100% !important;
-    height: 500px !important;
-    border: none !important;
+    width: 100%;
+    height: 500px;
+    border: none;
     border-radius: 10px;
-    display: block !important;
+    display: block;
 }
 
 /* ===========================
@@ -163,7 +163,7 @@ section h2 {
     background: radial-gradient(circle at 30% 30%, #666, #222 40%, #000 80%);
     border: 8px solid #000;
     animation: spin 4s linear infinite;
-    animation-play-state: paused;
+    animation-play-state: paused; /* JS will toggle this */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -178,8 +178,7 @@ section h2 {
 
 .vinyl-lines {
     position: absolute;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     border-radius: 50%;
     background: repeating-radial-gradient(circle,
         rgba(255,255,255,0.05) 0px,
@@ -206,6 +205,9 @@ section h2 {
     font-size: 32px;
     cursor: pointer;
     z-index: 3;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 /* ===========================
@@ -216,8 +218,8 @@ section h2 {
     width: 150px;
     height: 12px;
     background: #ccc;
-    top: 20px;
-    right: -30px;
+    top: 40px; /* Adjusted for better alignment */
+    right: -20px; /* Slightly corrected */
     border-radius: 6px;
     transform-origin: left center;
     transform: rotate(0deg);
@@ -238,6 +240,7 @@ section h2 {
     transition: transform 0.4s ease;
     z-index: 5;
 }
+
 
 /* ===========================
    MOBILE STACKING
