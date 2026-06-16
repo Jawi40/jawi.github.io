@@ -33,7 +33,7 @@ body {
    PLAYER BOX (30% SMALLER)
    =========================== */
 .player-box {
-    width: 130px; /* was 180px */
+    width: 200px; /* was 180px */
     background: #111;
     padding: 7px; /* smaller padding */
     border-radius: 10px;
