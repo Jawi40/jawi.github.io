@@ -130,7 +130,7 @@ body {
    CHAT BOX (30% SMALLER)
    =========================== */
 .chat-box {
-    width: 180px; /* was 260px */
+    width: 250px; /* was 260px */
     background: #111;
     padding: 7px;
     border-radius: 10px;
@@ -138,7 +138,7 @@ body {
     text-align: center;
     box-sizing: border-box;
 
-    height: 315px; /* was 450px */
+    height: 400px; /* was 450px */
     overflow-y: auto;
 }
 
@@ -153,7 +153,7 @@ body {
 /* ===========================
    MOBILE (ALSO 30% SMALLER)
    =========================== */
-@media (max-width: 700px) {
+@media (max-width: 750px) {
 
     .flex-row {
         flex-direction: column;
