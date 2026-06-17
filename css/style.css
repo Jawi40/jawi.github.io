@@ -7,16 +7,36 @@ body {
     background: #0a0a0a;
     color: #fdda24;
     font-family: Arial, sans-serif;
-    line-height: 1.6;
+    text-align: center; /* FIX: centers all text by default */
 }
 
 /* ===========================
    PAGE WRAPPER
    =========================== */
 .page-wrapper {
-    max-width: 1100px; /* more room */
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 10px;
+    padding: 0 20px;
+}
+
+/* ===========================
+   HEADER (RESTORED)
+   =========================== */
+header {
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    padding: 25px 10px;
+    text-align: center;
+    border-bottom: 3px solid #00e0ff;
+    box-shadow: 0 0 18px #00e0ff;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 56px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    color: #fdda24;
+    text-shadow: 0 0 12px #00e0ff;
 }
 
 /* ===========================
@@ -25,73 +45,58 @@ body {
 .flex-row {
     display: flex;
     justify-content: center;
-    gap: 30px; /* more breathing room */
+    gap: 40px;
     flex-wrap: wrap;
 }
 
 /* ===========================
-   PLAYER BOX (bigger + balanced)
+   PLAYER BOX (FIXED)
    =========================== */
 .player-box {
-    width: 220px; /* perfect width for vinyl + tonearm */
+    width: 260px; /* FIX: wider so tonearm fits */
     background: #111;
-    padding: 12px;
+    padding: 15px;
     border-radius: 12px;
     border: 2px solid #009b3a;
-    text-align: center;
     box-sizing: border-box;
 }
 
 /* ===========================
-   VINYL PLAYER (scaled up)
+   VINYL PLAYER (FIXED)
    =========================== */
 .vinyl-wrapper {
     position: relative;
-    width: 110px;
-    height: 110px;
-    margin: 0 auto 12px auto;
+    width: 140px; /* FIX: bigger record */
+    height: 140px;
+    margin: 0 auto 15px auto;
 }
 
 .vinyl {
-    width: 110px;
-    height: 110px;
+    width: 140px;
+    height: 140px;
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, #666, #222 40%, #000 80%);
-    border: 5px solid #000;
+    border: 6px solid #000;
     animation: spin 4s linear infinite;
     animation-play-state: paused;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
 }
 
-.vinyl-lines {
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    background: repeating-radial-gradient(circle,
-        rgba(255,255,255,0.05) 0px,
-        rgba(255,255,255,0.05) 2px,
-        rgba(0,0,0,0.4) 3px,
-        rgba(0,0,0,0.4) 6px);
-}
-
 .vinyl-center {
-    width: 48px;
-    height: 48px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background: radial-gradient(circle, #fdda24, #009b3a, #da291c);
 }
 
 .play-btn {
     position: absolute;
-    width: 42px;
-    height: 42px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     border: none;
     background: radial-gradient(circle, #fdda24, #009b3a, #da291c);
-    font-size: 20px;
+    font-size: 22px;
     cursor: pointer;
     z-index: 3;
     top: 50%;
@@ -100,28 +105,28 @@ body {
 }
 
 /* ===========================
-   TONEARM (fully visible now)
+   TONEARM (FIXED)
    =========================== */
 .tonearm {
     position: absolute;
-    width: 95px; /* longer arm */
-    height: 8px;
+    width: 120px; /* FIX: longer */
+    height: 10px;
     background: #ccc;
-    top: 25px;
-    right: -20px; /* moved inward so it's visible */
-    border-radius: 4px;
+    top: 35px; /* FIX: aligned with larger record */
+    right: -30px; /* FIX: moved outward so it's visible */
+    border-radius: 6px;
     transform-origin: left center;
     transition: transform 0.4s ease;
 }
 
 .needle {
     position: absolute;
-    width: 14px;
-    height: 26px;
+    width: 18px;
+    height: 30px;
     background: #222;
     top: -10px;
-    right: -6px;
-    border-radius: 3px;
+    right: -8px;
+    border-radius: 4px;
     transform-origin: top center;
     transition: transform 0.4s ease;
 }
@@ -130,15 +135,13 @@ body {
    CHAT BOX (slightly bigger)
    =========================== */
 .chat-box {
-    width: 260px; /* better width */
+    width: 300px;
     background: #111;
-    padding: 12px;
+    padding: 15px;
     border-radius: 12px;
     border: 2px solid #009b3a;
-    text-align: center;
     box-sizing: border-box;
-
-    height: 420px;
+    height: 450px;
     overflow-y: auto;
 }
 
@@ -147,25 +150,4 @@ body {
     height: 100%;
     border: none;
     border-radius: 10px;
-    display: block;
-}
-
-/* ===========================
-   MOBILE
-   =========================== */
-@media (max-width: 750px) {
-
-    .flex-row {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .chat-box {
-        width: 90%;
-        height: 300px;
-    }
-
-    .chat-frame {
-        height: 100%;
-    }
 }
