@@ -75,12 +75,14 @@ h2 {
 }
 
 /* ===========================
-   NAVIGATION BAR
+   HEADER + NAVIGATION
 =========================== */
 
 header {
     background: #000;
     border-bottom: 2px solid #009b3a;
+    position: relative;
+    z-index: 999;
 }
 
 .nav-container {
@@ -90,13 +92,19 @@ header {
     padding: 14px 20px;
 }
 
+/* ⭐ FIXED: JAMEXUS LOGO — BIG, BOLD, GLOWING */
 .logo {
-    font-size: 20px;
-    font-weight: 700;
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 2px;
     color: #fdda24;
-    text-shadow: 0 0 6px rgba(255,215,0,0.6);
+    text-shadow:
+        0 0 6px rgba(255,215,0,0.9),
+        0 0 12px rgba(255,215,0,0.7),
+        0 0 20px rgba(255,215,0,0.5);
 }
 
+/* Desktop nav */
 nav {
     display: flex;
     gap: 40px;
@@ -114,7 +122,7 @@ nav a:hover {
 }
 
 /* ===========================
-   HAMBURGER MENU (MOBILE)
+   HAMBURGER MENU
 =========================== */
 
 .hamburger {
@@ -125,7 +133,7 @@ nav a:hover {
 }
 
 .hamburger span {
-    width: 28px;
+    width: 30px;
     height: 3px;
     background: #fdda24;
     border-radius: 3px;
@@ -137,18 +145,27 @@ nav a:hover {
 
 @media (max-width: 700px) {
 
-    /* Add padding so text doesn't touch edges */
-    nav {
-        padding-left: 20px;
-        padding-right: 20px;
+    /* ⭐ Center the logo on mobile */
+    .nav-container {
+        justify-content: center;
+        position: relative;
     }
 
-    /* Show hamburger */
+    /* ⭐ Move hamburger to the right */
     .hamburger {
         display: flex;
+        position: absolute;
+        right: 20px;
+        top: 18px;
     }
 
-    /* Hide nav by default */
+    /* ⭐ Make JAMEXUS even more dominant on mobile */
+    .logo {
+        font-size: 34px;
+        letter-spacing: 2.5px;
+    }
+
+    /* ⭐ Mobile nav menu (hidden by default) */
     nav {
         position: absolute;
         top: 60px;
@@ -170,7 +187,7 @@ nav a:hover {
         border-bottom: 1px solid #222;
     }
 
-    /* When menu is open */
+    /* ⭐ When menu is open */
     nav.open {
         display: flex;
     }
