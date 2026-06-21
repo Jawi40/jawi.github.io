@@ -57,8 +57,14 @@
 
                     <div class="console-wrapper">
                         <div class="console-header">
-                            <div class="console-title">Infin8Radio Console</div>
-                            <div style="text-align:right; font-size:11px;">
+                            <div class="console-title">
+                                <span class="flag flag-jm"></span>
+                                <span class="flag flag-mx"></span>
+                                <span class="flag flag-us"></span>
+                                Infin8Radio Console
+                            </div>
+
+                            <div class="status-block">
                                 <span class="live-indicator" id="liveIndicator"></span>
                                 <span id="statusLabel">Idle</span><br>
                                 <span id="statusDetail">Ready</span>
@@ -66,9 +72,15 @@
                         </div>
 
                         <div class="controls-row">
-                            <button class="btn" id="playBtn">▶</button>
-                            <button class="btn btn-secondary" id="stopBtn">■</button>
-                            <button class="btn btn-secondary" id="retryBtn">↻</button>
+                            <button class="btn main" id="playBtn">▶</button>
+                            <button class="btn" id="retryBtn">↻</button>
+
+                            <div style="flex:1"></div>
+
+                            <div style="font-size:11px;">
+                                Errors: <span id="errorCount">0</span><br>
+                                Last reconnect: <span id="lastReconnect">--</span>
+                            </div>
                         </div>
 
                         <div class="equalizer eq-paused" id="equalizer">
@@ -85,91 +97,183 @@
                             <span id="volumeValue">--%</span>
                         </div>
 
+                        <div class="diag-toggle" id="diagToggle">Show Details ▼</div>
+
+                        <div class="diagnostics" id="diagnosticsPanel">
+                            <div>Stream URL: <span id="streamUrlText"></span></div>
+                            <div>Connection: <span id="connectionState">Idle</span></div>
+                            <div>Uptime: <span id="uptime">0s</span></div>
+                            <div>Listeners: <span id="listenerCount">--</span></div>
+                        </div>
+
                         <div class="console-footer">
-                            Stream: <span id="streamUrlText"></span>
+                            <span>Engine: Jamexus-style</span>
+                            <span>Mode: Radio Stream</span>
                         </div>
                     </div>
 
                     <audio id="radioAudio"></audio>
 
                     <script>
-                        const STREAM_URL = "https://stream.zeno.fm/axipqkdhsiitv";
+                        const STREAM_URL = "https://stream.zeno.fm/axipqkdhsiitv/listen";
 
                         const audio = document.getElementById("radioAudio");
                         const playBtn = document.getElementById("playBtn");
-                        const stopBtn = document.getElementById("stopBtn");
                         const retryBtn = document.getElementById("retryBtn");
                         const volumeSlider = document.getElementById("volumeSlider");
                         const volumeValue = document.getElementById("volumeValue");
                         const liveIndicator = document.getElementById("liveIndicator");
                         const statusLabel = document.getElementById("statusLabel");
                         const statusDetail = document.getElementById("statusDetail");
-                        const equalizer = document.getElementById("equalizer");
+                        const errorCountEl = document.getElementById("errorCount");
+                        const lastReconnectEl = document.getElementById("lastReconnect");
+                        const connectionStateEl = document.getElementById("connectionState");
+                        const uptimeEl = document.getElementById("uptime");
                         const streamUrlText = document.getElementById("streamUrlText");
+                        const listenerCountEl = document.getElementById("listenerCount");
+                        const equalizer = document.getElementById("equalizer");
+                        const diagToggle = document.getElementById("diagToggle");
+                        const diagnosticsPanel = document.getElementById("diagnosticsPanel");
 
                         streamUrlText.textContent = STREAM_URL;
 
                         let isPlaying = false;
+                        let reconnectTimer = null;
+                        let errorCount = 0;
                         let manualStop = false;
+                        let uptimeTimer = null;
+                        let startTime = null;
+                        let lastListenerCount = null;
 
                         function setStatus(label, detail, type = null) {
                             statusLabel.textContent = label;
                             statusDetail.textContent = detail;
+
                             liveIndicator.className = "live-indicator";
                             if (type === "ok") liveIndicator.classList.add("live-ok");
                             if (type === "warn") liveIndicator.classList.add("live-warn");
                         }
 
+                        function startUptime() {
+                            startTime = Date.now();
+                            clearInterval(uptimeTimer);
+                            uptimeTimer = setInterval(() => {
+                                const diff = Math.floor((Date.now() - startTime) / 1000);
+                                uptimeEl.textContent = diff + "s";
+                            }, 1000);
+                        }
+
+                        function stopUptime() {
+                            clearInterval(uptimeTimer);
+                            uptimeEl.textContent = "0s";
+                        }
+
+                        function fadeIn() {
+                            let v = 0;
+                            const target = parseFloat(volumeSlider.value);
+                            audio.volume = 0;
+                            const interval = setInterval(() => {
+                                v += 0.05;
+                                audio.volume = Math.min(v, target);
+                                if (v >= target) clearInterval(interval);
+                            }, 40);
+                        }
+
+                        function fadeOut(callback) {
+                            let v = audio.volume;
+                            const interval = setInterval(() => {
+                                v -= 0.05;
+                                audio.volume = Math.max(v, 0);
+                                if (v <= 0) {
+                                    clearInterval(interval);
+                                    if (callback) callback();
+                                }
+                            }, 40);
+                        }
+
                         function eqStart() {
                             equalizer.classList.remove("eq-paused");
                         }
+
                         function eqStop() {
                             equalizer.classList.add("eq-paused");
                         }
 
                         async function startStream() {
                             manualStop = false;
+                            clearTimeout(reconnectTimer);
+
                             audio.src = STREAM_URL;
                             setStatus("Connecting", "Initializing…", "warn");
+                            connectionStateEl.textContent = "Connecting";
+
                             try {
                                 await audio.play();
                                 isPlaying = true;
                                 playBtn.textContent = "⏸";
+                                playBtn.classList.add("pulse");
                                 setStatus("LIVE", "Stream active", "ok");
-                                audio.volume = parseFloat(volumeSlider.value);
+                                connectionStateEl.textContent = "Playing";
+                                startUptime();
+                                fadeIn();
                                 eqStart();
-                            } catch (e) {
-                                setStatus("Error", "Stream failed");
-                                eqStop();
+                            } catch (err) {
+                                handleError();
                             }
-                        }
-
-                        function pauseStream() {
-                            audio.pause();
-                            isPlaying = false;
-                            playBtn.textContent = "▶";
-                            setStatus("Paused", "Paused");
-                            eqStop();
                         }
 
                         function stopStream() {
                             manualStop = true;
-                            audio.pause();
-                            audio.removeAttribute("src");
-                            audio.load();
-                            isPlaying = false;
-                            playBtn.textContent = "▶";
-                            setStatus("Stopped", "Stopped by user");
+                            fadeOut(() => {
+                                audio.pause();
+                                audio.removeAttribute("src");
+                                audio.load();
+                                isPlaying = false;
+                                playBtn.textContent = "▶";
+                                playBtn.classList.remove("pulse");
+                                setStatus("Stopped", "Stopped by user");
+                                connectionStateEl.textContent = "Stopped";
+                                stopUptime();
+                                eqStop();
+                            });
+                        }
+
+                        function handleError() {
+                            if (manualStop) return;
+
+                            errorCount++;
+                            errorCountEl.textContent = errorCount;
+
+                            setStatus("Error", "Stream failed", null);
+                            connectionStateEl.textContent = "Error";
+
                             eqStop();
+                            scheduleReconnect();
+                        }
+
+                        function scheduleReconnect() {
+                            if (manualStop) return;
+
+                            setStatus("Reconnecting", "Retrying…", "warn");
+                            connectionStateEl.textContent = "Reconnecting";
+
+                            reconnectTimer = setTimeout(() => {
+                                lastReconnectEl.textContent = new Date().toLocaleTimeString();
+                                startStream();
+                            }, 3000);
                         }
 
                         playBtn.addEventListener("click", () => {
                             if (!isPlaying) startStream();
-                            else pauseStream();
-                        });
-
-                        stopBtn.addEventListener("click", () => {
-                            stopStream();
+                            else {
+                                audio.pause();
+                                isPlaying = false;
+                                playBtn.textContent = "▶";
+                                playBtn.classList.remove("pulse");
+                                setStatus("Paused", "Paused");
+                                connectionStateEl.textContent = "Paused";
+                                eqStop();
+                            }
                         });
 
                         retryBtn.addEventListener("click", () => {
@@ -184,6 +288,31 @@
                             localStorage.setItem("consoleVolume", v);
                         });
 
+                        diagToggle.addEventListener("click", () => {
+                            diagnosticsPanel.classList.toggle("open");
+                            diagToggle.textContent = diagnosticsPanel.classList.contains("open")
+                                ? "Hide Details ▲"
+                                : "Show Details ▼";
+                        });
+
+                        async function updateListeners() {
+                            try {
+                                const res = await fetch("https://api.zeno.fm/mounts/metadata/axipqkdhsiitv");
+                                const data = await res.json();
+                                const count = data.listeners ?? "--";
+
+                                if (count !== lastListenerCount && lastListenerCount !== null) {
+                                    listenerCountEl.classList.add("pop");
+                                    setTimeout(() => listenerCountEl.classList.remove("pop"), 350);
+                                }
+
+                                listenerCountEl.textContent = count;
+                                lastListenerCount = count;
+                            } catch {
+                                listenerCountEl.textContent = "--";
+                            }
+                        }
+
                         const savedVol = localStorage.getItem("consoleVolume");
                         const initVol = savedVol ? parseFloat(savedVol) : 0.8;
                         volumeSlider.value = initVol;
@@ -191,7 +320,9 @@
                         audio.volume = initVol;
 
                         setStatus("Idle", "Ready");
-                        eqStop();
+
+                        setInterval(updateListeners, 10000);
+                        updateListeners();
                     </script>
 
                 </div>
