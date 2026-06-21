@@ -51,146 +51,459 @@
 
         <div class="flex-row">
 
-            <!-- PLAYER -->
-            <div class="player-box">
+            <!-- NEW COMPACT PLAYER (NO WRAPPER) -->
+            <div style="flex:1;">
 
-                <h2 class="player-title">Infin8Radio</h2>
+                <!-- ⭐ NEW PLAYER STARTS HERE ⭐ -->
+                <div id="infin8-console">
+                    <style>
+                        #infin8-console {
+                          width: 100%;
+                          display: flex;
+                          justify-content: center;
+                          padding: 10px 0;
+                          font-family: system-ui, sans-serif;
+                        }
 
-                <div id="nowPlaying" class="now-playing">🎵 Loading current track...</div>
+                        .console-wrapper {
+                          width: 100%;
+                          max-width: 540px;
+                          background: rgba(10,10,10,0.85);
+                          backdrop-filter: blur(6px);
+                          border: 2px solid #1f1f1f;
+                          border-radius: 14px;
+                          box-shadow: 0 0 25px rgba(0,0,0,0.7),
+                                      0 0 30px rgba(0,255,0,0.2),
+                                      0 0 30px rgba(255,255,0,0.2),
+                                      0 0 30px rgba(255,0,0,0.2);
+                          padding: 10px;
+                          color: #eee;
+                          position: relative;
+                        }
 
-                <!-- VINYL PLAYER -->
-                <div class="vinyl-wrapper">
+                        .console-header {
+                          display: flex;
+                          justify-content: space-between;
+                          align-items: center;
+                          padding: 6px 10px;
+                          border-bottom: 2px solid #004d00;
+                          background: linear-gradient(90deg, #000, #006400);
+                          border-radius: 10px 10px 0 0;
+                        }
 
-                    <div id="tonearm" class="tonearm">
-                        <div id="needleHead" class="needle"></div>
+                        .console-title {
+                          font-size: 16px;
+                          font-weight: 700;
+                          color: #f4d400;
+                          display: flex;
+                          align-items: center;
+                          gap: 6px;
+                          text-shadow: 0 0 6px rgba(255,215,0,0.6);
+                        }
+
+                        .flag {
+                          width: 22px;
+                          height: 14px;
+                          border-radius: 2px;
+                          background-size: cover;
+                          border: 1px solid #222;
+                        }
+
+                        .flag-jm { background-image: url("https://upload.wikimedia.org/wikipedia/commons/0/0a/Flag_of_Jamaica.svg"); }
+                        .flag-mx { background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/fc/Flag_of_Mexico.svg"); }
+                        .flag-us { background-image: url("https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg"); }
+
+                        .live-indicator {
+                          width: 10px;
+                          height: 10px;
+                          border-radius: 3px;
+                          background: #b00000;
+                          box-shadow: 0 0 6px rgba(255,0,0,0.6);
+                          transition: 0.25s;
+                        }
+
+                        .live-ok { background: #00d000 !important; }
+                        .live-warn { background: #f4d400 !important; }
+
+                        .controls-row {
+                          display: flex;
+                          align-items: center;
+                          gap: 8px;
+                          margin-top: 12px;
+                        }
+
+                        .btn {
+                          width: 38px;
+                          height: 38px;
+                          border-radius: 8px;
+                          border: 1px solid #333;
+                          background: #222;
+                          color: #f4d400;
+                          font-size: 18px;
+                          cursor: pointer;
+                          transition: 0.2s;
+                        }
+
+                        .btn.main {
+                          background: #f4d400;
+                          color: #000;
+                          font-weight: 700;
+                          border: none;
+                          box-shadow: 0 0 10px rgba(255,215,0,0.6);
+                        }
+
+                        .pulse {
+                          animation: pulseGlow 1.4s ease-in-out infinite;
+                        }
+
+                        @keyframes pulseGlow {
+                          0% { box-shadow: 0 0 6px rgba(255,215,0,0.4); }
+                          50% { box-shadow: 0 0 14px rgba(255,215,0,0.9); }
+                          100% { box-shadow: 0 0 6px rgba(255,215,0,0.4); }
+                        }
+
+                        .equalizer {
+                          display: flex;
+                          justify-content: center;
+                          gap: 4px;
+                          margin-top: 6px;
+                          height: 14px;
+                        }
+
+                        .eq-bar {
+                          width: 6px;
+                          background: #f4d400;
+                          border-radius: 3px;
+                          animation: eqBounce 0.6s infinite ease-in-out;
+                        }
+
+                        .eq-bar:nth-child(1) { animation-delay: 0s; }
+                        .eq-bar:nth-child(2) { animation-delay: 0.1s; }
+                        .eq-bar:nth-child(3) { animation-delay: 0.2s; }
+                        .eq-bar:nth-child(4) { animation-delay: 0.3s; }
+                        .eq-bar:nth-child(5) { animation-delay: 0.4s; }
+
+                        @keyframes eqBounce {
+                          0% { height: 3px; }
+                          50% { height: 12px; }
+                          100% { height: 3px; }
+                        }
+
+                        .eq-paused .eq-bar {
+                          animation-play-state: paused;
+                          height: 3px !important;
+                        }
+
+                        .volume-row {
+                          margin-top: 12px;
+                          display: flex;
+                          align-items: center;
+                          gap: 8px;
+                        }
+
+                        .volume-row input[type="range"] {
+                          width: 100%;
+                          height: 6px;
+                          background: #333;
+                          border-radius: 4px;
+                        }
+
+                        .volume-row input[type="range"]::-webkit-slider-thumb {
+                          width: 14px;
+                          height: 18px;
+                          background: #f4d400;
+                          border-radius: 4px;
+                          box-shadow: 0 0 6px rgba(255,215,0,0.6);
+                        }
+
+                        .diag-toggle {
+                          margin-top: 10px;
+                          cursor: pointer;
+                          color: #f4d400;
+                          font-size: 13px;
+                          text-align: center;
+                        }
+
+                        .diagnostics {
+                          margin-top: 6px;
+                          padding: 8px;
+                          background: #0d0d0d;
+                          border: 1px solid #222;
+                          border-radius: 8px;
+                          font-size: 12px;
+                          line-height: 1.4;
+                          max-height: 0;
+                          overflow: hidden;
+                          transition: max-height 0.35s ease;
+                        }
+
+                        .diagnostics.open {
+                          max-height: 260px;
+                        }
+
+                        .pop {
+                          animation: popAnim 0.35s ease;
+                        }
+
+                        @keyframes popAnim {
+                          0% { transform: scale(1); }
+                          50% { transform: scale(1.35); }
+                          100% { transform: scale(1); }
+                        }
+
+                        .console-footer {
+                          margin-top: 14px;
+                          padding: 8px 10px;
+                          background: linear-gradient(90deg, #006400, #000);
+                          border-top: 2px solid #004d00;
+                          font-size: 11px;
+                          color: #f4d400;
+                          display: flex;
+                          justify-content: space-between;
+                          border-radius: 0 0 10px 10px;
+                        }
+                    </style>
+
+                    <div class="console-wrapper">
+                        <div class="console-header">
+                            <div class="console-title">
+                                <span class="flag flag-jm"></span>
+                                <span class="flag flag-mx"></span>
+                                <span class="flag flag-us"></span>
+                                Infin8Radio Console
+                            </div>
+
+                            <div class="status-block">
+                                <span class="live-indicator" id="liveIndicator"></span>
+                                <span id="statusLabel">Idle</span><br />
+                                <span id="statusDetail">Ready</span>
+                            </div>
+                        </div>
+
+                        <div class="controls-row">
+                            <button class="btn main" id="playBtn">▶</button>
+                            <button class="btn" id="retryBtn">↻</button>
+
+                            <div style="flex:1"></div>
+
+                            <div style="font-size:11px;">
+                                Errors: <span id="errorCount">0</span><br />
+                                Last reconnect: <span id="lastReconnect">--</span>
+                            </div>
+                        </div>
+
+                        <div class="equalizer eq-paused" id="equalizer">
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                        </div>
+
+                        <div class="volume-row">
+                            <span>Vol</span>
+                            <input type="range" id="volumeSlider" min="0" max="1" step="0.01" />
+                            <span id="volumeValue">--%</span>
+                        </div>
+
+                        <div class="diag-toggle" id="diagToggle">Show Details ▼</div>
+
+                        <div class="diagnostics" id="diagnosticsPanel">
+                            <div>Stream URL: <span id="streamUrlText"></span></div>
+                            <div>Connection: <span id="connectionState">Idle</span></div>
+                            <div>Uptime: <span id="uptime">0s</span></div>
+                            <div>Listeners: <span id="listenerCount">--</span></div>
+                        </div>
+
+                        <div class="console-footer">
+                            <span>Engine: Jamexus-style</span>
+                            <span>Mode: Radio Stream</span>
+                        </div>
                     </div>
 
-                    <div id="vinyl" class="vinyl">
-                        <div class="vinyl-lines"></div>
-                        <div class="vinyl-center"></div>
-                        <button id="playBtn" class="play-btn">▶</button>
-                    </div>
+                    <audio id="radioAudio"></audio>
 
-                </div>
+                    <script>
+                        const STREAM_URL = "https://stream.zeno.fm/axipqkdhsiitv/listen";
 
-                <div id="listenerCount" class="listener-count">🔊 Live listeners: 0</div>
+                        const audio = document.getElementById("radioAudio");
+                        const playBtn = document.getElementById("playBtn");
+                        const retryBtn = document.getElementById("retryBtn");
+                        const volumeSlider = document.getElementById("volumeSlider");
+                        const volumeValue = document.getElementById("volumeValue");
+                        const liveIndicator = document.getElementById("liveIndicator");
+                        const statusLabel = document.getElementById("statusLabel");
+                        const statusDetail = document.getElementById("statusDetail");
+                        const errorCountEl = document.getElementById("errorCount");
+                        const lastReconnectEl = document.getElementById("lastReconnect");
+                        const connectionStateEl = document.getElementById("connectionState");
+                        const uptimeEl = document.getElementById("uptime");
+                        const streamUrlText = document.getElementById("streamUrlText");
+                        const listenerCountEl = document.getElementById("listenerCount");
+                        const equalizer = document.getElementById("equalizer");
+                        const diagToggle = document.getElementById("diagToggle");
+                        const diagnosticsPanel = document.getElementById("diagnosticsPanel");
 
-                <audio id="audioPlayer" crossorigin="anonymous" playsinline>
-                    <source src="https://stream.zeno.fm/axipqkdhsiitv?aw_0_1st.playerid=html5" type="audio/mpeg">
-                </audio>
+                        streamUrlText.textContent = STREAM_URL;
 
-            </div>
+                        let isPlaying = false;
+                        let reconnectTimer = null;
+                        let errorCount = 0;
+                        let manualStop = false;
+                        let uptimeTimer = null;
+                        let startTime = null;
+                        let lastListenerCount = null;
 
-            <!-- CHAT -->
-            <div class="chat-box">
-                <h2 class="chat-title">💬 Music Vibes Chat Room</h2>
+                        function setStatus(label, detail, type = null) {
+                          statusLabel.textContent = label;
+                          statusDetail.textContent = detail;
 
-                <iframe 
-                    src="https://minnit.chat/Infin8Radio?embed&wix&height=420"
-                    class="chat-frame"
-                    frameborder="0">
-                </iframe>
-            </div>
+                          liveIndicator.className = "live-indicator";
+                          if (type === "ok") liveIndicator.classList.add("live-ok");
+                          if (type === "warn") liveIndicator.classList.add("live-warn");
+                        }
 
-        </div>
-    </section>
+                        function startUptime() {
+                          startTime = Date.now();
+                          clearInterval(uptimeTimer);
+                          uptimeTimer = setInterval(() => {
+                            const diff = Math.floor((Date.now() - startTime) / 1000);
+                            uptimeEl.textContent = diff + "s";
+                          }, 1000);
+                        }
 
-    <div class="section-divider"></div>
+                        function stopUptime() {
+                          clearInterval(uptimeTimer);
+                          uptimeEl.textContent = "0s";
+                        }
 
-    <!-- SECTION 4 -->
-    <section>
-        <h2>Why Internet Radio?</h2>
-        <p>
-            Internet radio is one of the most open, creative, and global forms of broadcasting.
-            Anyone can create. Anyone can listen.
-            I’m here to explore that world and help others dive in.
-        </p>
-    </section>
+                        function fadeIn() {
+                          let v = 0;
+                          const target = parseFloat(volumeSlider.value);
+                          audio.volume = 0;
+                          const interval = setInterval(() => {
+                            v += 0.05;
+                            audio.volume = Math.min(v, target);
+                            if (v >= target) clearInterval(interval);
+                          }, 40);
+                        }
 
-    <div class="section-divider"></div>
+                        function fadeOut(callback) {
+                          let v = audio.volume;
+                          const interval = setInterval(() => {
+                            v -= 0.05;
+                            audio.volume = Math.max(v, 0);
+                            if (v <= 0) {
+                              clearInterval(interval);
+                              if (callback) callback();
+                            }
+                          }, 40);
+                        }
 
-    <!-- SECTION 5 -->
-    <section>
-        <h2>Connect</h2>
-        <p>Email: <span class="highlight">uc5521@gmail.com</span></p>
-    </section>
+                        function eqStart() {
+                          equalizer.classList.remove("eq-paused");
+                        }
 
-</div><!-- END page-wrapper -->
+                        function eqStop() {
+                          equalizer.classList.add("eq-paused");
+                        }
 
-<div class="section-divider"></div>
+                        async function startStream() {
+                          manualStop = false;
+                          clearTimeout(reconnectTimer);
 
-<!-- FOOTER -->
-<div id="footer"></div>
-<script>
-  fetch("partials/footer.html")
-    .then(response => response.text())
-    .then(data => document.getElementById("footer").innerHTML = data);
-</script>
+                          audio.src = STREAM_URL;
+                          setStatus("Connecting", "Initializing…", "warn");
+                          connectionStateEl.textContent = "Connecting";
 
-<!-- PLAYER SCRIPT -->
-<script>
-const audio = document.getElementById('audioPlayer');
-const vinyl = document.getElementById('vinyl');
-const playBtn = document.getElementById('playBtn');
-const tonearm = document.getElementById('tonearm');
-const needle = document.getElementById('needleHead');
+                          try {
+                            await audio.play();
+                            isPlaying = true;
+                            playBtn.textContent = "⏸";
+                            playBtn.classList.add("pulse");
+                            setStatus("LIVE", "Stream active", "ok");
+                            connectionStateEl.textContent = "Playing";
+                            startUptime();
+                            fadeIn();
+                            eqStart();
+                          } catch (err) {
+                            handleError();
+                          }
+                        }
 
-playBtn.addEventListener('click', async () => {
-    try {
-        if (audio.paused) {
-            await audio.play();
-            audio.muted = false;
+                        function stopStream() {
+                          manualStop = true;
+                          fadeOut(() => {
+                            audio.pause();
+                            audio.removeAttribute("src");
+                            audio.load();
+                            isPlaying = false;
+                            playBtn.textContent = "▶";
+                            playBtn.classList.remove("pulse");
+                            setStatus("Stopped", "Stopped by user");
+                            connectionStateEl.textContent = "Stopped";
+                            stopUptime();
+                            eqStop();
+                          });
+                        }
 
-            vinyl.style.animationPlayState = 'running';
-            playBtn.textContent = '⏸';
+                        function handleError() {
+                          if (manualStop) return;
 
-            tonearm.style.transform = 'rotate(25deg)';
-            needle.style.transform = 'rotate(25deg)';
-        } else {
-            audio.pause();
+                          errorCount++;
+                          errorCountEl.textContent = errorCount;
 
-            vinyl.style.animationPlayState = 'paused';
-            playBtn.textContent = '▶';
+                          setStatus("Error", "Stream failed", null);
+                          connectionStateEl.textContent = "Error";
 
-            tonearm.style.transform = 'rotate(0deg)';
-            needle.style.transform = 'rotate(0deg)';
-        }
-    } catch (err) {
-        console.log("Playback error:", err);
-    }
-});
-</script>
+                          eqStop();
+                          scheduleReconnect();
+                        }
 
-<!-- METADATA SCRIPT -->
-<script>
-async function updateMetadata() {
-    const nowBar = document.getElementById("nowPlaying");
-    const listenerBar = document.getElementById("listenerCount");
+                        function scheduleReconnect() {
+                          if (manualStop) return;
 
-    try {
-        const response = await fetch("https://api.zeno.fm/mounts/metadata/u6ayd9bmunhvv?cache=" + Date.now());
-        const data = await response.json();
+                          setStatus("Reconnecting", "Retrying…", "warn");
+                          connectionStateEl.textContent = "Reconnecting";
 
-        nowBar.textContent = data.now_playing 
-            ? "🎵 Now Playing: " + data.now_playing 
-            : "🎵 Now Playing: Live Stream";
+                          reconnectTimer = setTimeout(() => {
+                            lastReconnectEl.textContent = new Date().toLocaleTimeString();
+                            startStream();
+                          }, 3000);
+                        }
 
-        if (data.listeners !== undefined) {
-            listenerBar.textContent = "🔊 Live listeners: " + data.listeners;
-            listenerBar.style.display = "block";
-        } else {
-            listenerBar.style.display = "none";
-        }
+                        playBtn.addEventListener("click", () => {
+                          if (!isPlaying) startStream();
+                          else {
+                            audio.pause();
+                            isPlaying = false;
+                            playBtn.textContent = "▶";
+                            playBtn.classList.remove("pulse");
+                            setStatus("Paused", "Paused");
+                            connectionStateEl.textContent = "Paused";
+                            eqStop();
+                          }
+                        });
 
-    } catch (err) {
-        nowBar.textContent = "🎵 Now Playing: Live Stream";
-        listenerBar.style.display = "none";
-    }
-}
+                        retryBtn.addEventListener("click", () => {
+                          stopStream();
+                          startStream();
+                        });
 
-updateMetadata();
-setInterval(updateMetadata, 10000);
-</script>
+                        volumeSlider.addEventListener("input", () => {
+                          const v = parseFloat(volumeSlider.value);
+                          audio.volume = v;
+                          volumeValue.textContent = Math.round(v * 100) + "%";
+                          localStorage.setItem("consoleVolume", v);
+                        });
 
-</body>
-</html>
+                        diagToggle.addEventListener("click", () => {
+                          diagnosticsPanel.classList.toggle("open");
+                          diagToggle.textContent = diagnosticsPanel.classList.contains("open")
+                            ? "Hide Details ▲"
+                            : "Show Details ▼";
+                        });
+
+                        async function updateListeners() {
+                          try {
+                            const res = await fetch("https://api.zeno.fm/mounts/metadata/axipq
