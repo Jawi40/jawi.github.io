@@ -148,7 +148,7 @@ section h2 {
 }
 
 /* ===========================
-   INFIN8 RADIO CONSOLE
+   INFIN8 RADIO CONSOLE (ADVANCED)
 =========================== */
 
 #infin8-console {
@@ -170,6 +170,7 @@ section h2 {
     color: #eee;
 }
 
+/* HEADER */
 .console-header {
     display: flex;
     justify-content: space-between;
@@ -186,6 +187,22 @@ section h2 {
     color: #fdda24;
 }
 
+/* FLAGS */
+.flag {
+    display: inline-block;
+    width: 18px;
+    height: 12px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 2px;
+    margin-right: 3px;
+}
+
+.flag-jm { background-image: url('https://flagcdn.com/w20/jm.png'); }
+.flag-mx { background-image: url('https://flagcdn.com/w20/mx.png'); }
+.flag-us { background-image: url('https://flagcdn.com/w20/us.png'); }
+
+/* LIVE INDICATOR */
 .live-indicator {
     width: 10px;
     height: 10px;
@@ -197,6 +214,7 @@ section h2 {
 .live-ok { background: #00d000 !important; }
 .live-warn { background: #f4d400 !important; }
 
+/* CONTROLS */
 .controls-row {
     display: flex;
     align-items: center;
@@ -215,11 +233,16 @@ section h2 {
     cursor: pointer;
 }
 
+.btn.main {
+    background: #fdda24;
+}
+
 .btn-secondary {
     background: #222;
     color: #fdda24;
 }
 
+/* EQUALIZER */
 .equalizer {
     display: flex;
     justify-content: center;
@@ -246,6 +269,7 @@ section h2 {
     100% { height: 3px; }
 }
 
+/* VOLUME */
 .volume-row {
     margin-top: 10px;
     display: flex;
@@ -257,40 +281,59 @@ section h2 {
     width: 100%;
 }
 
+/* DIAGNOSTICS */
+.diag-toggle {
+    margin-top: 10px;
+    cursor: pointer;
+    color: #f4d400;
+    font-size: 13px;
+    text-align: center;
+}
+
+.diagnostics {
+    margin-top: 6px;
+    padding: 8px;
+    background: #0d0d0d;
+    border: 1px solid #222;
+    border-radius: 8px;
+    font-size: 12px;
+    line-height: 1.4;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+}
+
+.diagnostics.open {
+    max-height: 260px;
+}
+
+.pop {
+    animation: popAnim 0.35s ease;
+}
+
+@keyframes popAnim {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.35); }
+    100% { transform: scale(1); }
+}
+
+/* FOOTER */
 .console-footer {
-    margin-top: 12px;
-    padding: 6px 10px;
-    font-size: 11px;
-    color: #fdda24;
+    margin-top: 14px;
+    padding: 8px 10px;
     background: linear-gradient(90deg, #006400, #000);
+    border-top: 2px solid #004d00;
+    font-size: 11px;
+    color: #f4d400;
+    display: flex;
+    justify-content: space-between;
     border-radius: 0 0 10px 10px;
 }
 
-/* ===========================
-   MOBILE STACKING
-   =========================== */
-@media (max-width: 700px) {
-    .flex-row {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-    }
-
-    .player-box,
-    .chat-box {
-        width: 100%;
-        max-width: 420px;
-    }
-
-    nav {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-}
-
+/* MOBILE */
 @media (max-width: 600px) {
-    #infin8-console .console-wrapper { width: 95%; }
-    #infin8-console .controls-row { flex-wrap: wrap; justify-content: center; }
-    #infin8-console .console-title { font-size: 14px; }
+    .console-wrapper { width: 95%; }
+    .controls-row { flex-wrap: wrap; justify-content: center; }
+    .console-title { font-size: 14px; }
 }
+
