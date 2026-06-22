@@ -6,7 +6,7 @@ import { getDatabase } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-
 const firebaseConfig = {
     apiKey: "AIzaSyDq-7xJ0t9xj1xJYv8xYVYxYVYxYVYxYVY",
     authDomain: "infin8radio.firebaseapp.com",
-    databaseURL: "https://infin8radio-default-rtdb.firebaseio.com",
+    databaseURL: "https://infin8radio-xxxxx-default-rtdb.firebaseio.com",
     projectId: "infin8radio",
     storageBucket: "infin8radio.appspot.com",
     messagingSenderId: "1234567890",
