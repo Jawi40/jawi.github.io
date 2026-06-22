@@ -74,6 +74,9 @@
                         <div class="controls-row">
                             <button class="btn main" id="playBtn">▶</button>
                             <button class="btn" id="retryBtn">↻</button>
+                        </div>
+                            
+                            <audio id="radioAudio" src="https://stream.zeno.fm/axipqkdhsiitv"></audio>
 
                             <div style="flex:1"></div>
 
@@ -199,44 +202,53 @@
                             equalizer.classList.add("eq-paused");
                         }
 
-                        async function startStream() {
-                            manualStop = false;
-                            clearTimeout(reconnectTimer);
+                    async function startStream() {
+    manualStop = false;
+    clearTimeout(reconnectTimer);
 
-                            audio.src = STREAM_URL;
-                            setStatus("Connecting", "Initializing…", "warn");
-                            connectionStateEl.textContent = "Connecting";
+    audio.src = STREAM_URL;
+    setStatus("Connecting", "Initializing…", "warn");
+    connectionStateEl.textContent = "Connecting";
 
-                            try {
-                                await audio.play();
-                                isPlaying = true;
-                                playBtn.textContent = "⏸";
-                                playBtn.classList.add("pulse");
-                                setStatus("LIVE", "Stream active", "ok");
-                                connectionStateEl.textContent = "Playing";
-                                startUptime();
-                                fadeIn();
-                                eqStart();
-                            } catch (err) {
-                                handleError();
-                            }
-                        }
+    try {
+        await audio.play();
+        isPlaying = true;
+
+        // 🔥 ADD THIS
+        startListening();
+
+        playBtn.textContent = "⏸";
+        playBtn.classList.add("pulse");
+        setStatus("LIVE", "Stream active", "ok");
+        connectionStateEl.textContent = "Playing";
+        startUptime();
+        fadeIn();
+        eqStart();
+    } catch (err) {
+        handleError();
+    }
+}
+
 
                         function stopStream() {
-                            manualStop = true;
-                            fadeOut(() => {
-                                audio.pause();
-                                audio.removeAttribute("src");
-                                audio.load();
-                                isPlaying = false;
-                                playBtn.textContent = "▶";
-                                playBtn.classList.remove("pulse");
-                                setStatus("Stopped", "Stopped by user");
-                                connectionStateEl.textContent = "Stopped";
-                                stopUptime();
-                                eqStop();
-                            });
-                        }
+    manualStop = true;
+
+    // 🔥 ADD THIS
+    stopListening();
+
+    fadeOut(() => {
+        audio.pause();
+        audio.removeAttribute("src");
+        audio.load();
+        isPlaying = false;
+        playBtn.textContent = "▶";
+        playBtn.classList.remove("pulse");
+        setStatus("Stopped", "Stopped by user");
+        connectionStateEl.textContent = "Stopped";
+        stopUptime();
+        eqStop();
+    });
+}
 
                         function handleError() {
                             if (manualStop) return;
