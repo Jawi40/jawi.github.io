@@ -429,3 +429,9 @@ section h2 {
     }
 }
 
+#listenerCount {
+    color: #fdda24;
+    font-weight: 700;
+    text-shadow: 0 0 6px #fdda24;
+}
+
