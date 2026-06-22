@@ -264,17 +264,23 @@
                         }
 
                         playBtn.addEventListener("click", () => {
-                            if (!isPlaying) startStream();
-                            else {
-                                audio.pause();
-                                isPlaying = false;
-                                playBtn.textContent = "▶";
-                                playBtn.classList.remove("pulse");
-                                setStatus("Paused", "Paused");
-                                connectionStateEl.textContent = "Paused";
-                                eqStop();
-                            }
-                        });
+    if (!isPlaying) {
+        startStream();      // your existing audio start logic
+        startListening();   // 🔥 added
+    } else {
+        audio.pause();
+        isPlaying = false;
+
+        stopListening();    // 🔥 added
+
+        playBtn.textContent = "▶";
+        playBtn.classList.remove("pulse");
+        setStatus("Paused", "Paused");
+        connectionStateEl.textContent = "Paused";
+        eqStop();
+    }
+});
+
 
                         retryBtn.addEventListener("click", () => {
                             stopStream();
