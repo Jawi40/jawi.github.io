@@ -1,19 +1,18 @@
-// firebase-init.js
-
-// Load Firebase (v8 syntax for browser)
-document.write('<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>');
-document.write('<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>');
+// Load Firebase SDK normally (no document.write)
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js";
+import { getDatabase, ref, onDisconnect, set, remove } from "https://www.gstatic.com/firebasejs/9.22.2/firebase-database.js";
 
 // Your Firebase config
 const firebaseConfig = {
-  apiKey: "AIzaSyAoX5CLGpen-VMH7tpFohaXBAihryKZx50",
-  authDomain: "infin8radio.firebaseapp.com",
-  databaseURL: "https://infin8radio-default-rtdb.firebaseio.com/",
-  projectId: "infin8radio",
-  storageBucket: "infin8radio.firebasestorage.app",
-  messagingSenderId: "1034600571948",
-  appId: "1:1034600571948:web:e0d1a0b0d11e5f66c91d89"
+    apiKey: "AIzaSyDq-7xJ0t9xj1xJYv8xYVYxYVYxYVYxYVY",
+    authDomain: "infin8radio.firebaseapp.com",
+    databaseURL: "https://infin8radio-default-rtdb.firebaseio.com",
+    projectId: "infin8radio",
+    storageBucket: "infin8radio.appspot.com",
+    messagingSenderId: "1234567890",
+    appId: "1:1234567890:web:abcdef123456"
 };
 
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+export const db = getDatabase(app);
