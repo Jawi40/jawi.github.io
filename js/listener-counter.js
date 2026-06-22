@@ -8,7 +8,10 @@ export function startListening() {
 
     const listenerRef = ref(db, "listeners/" + listenerId);
 
+    // Mark listener as active
     set(listenerRef, true);
+
+    // Auto-remove if user closes tab or disconnects
     onDisconnect(listenerRef).remove();
 }
 
@@ -16,6 +19,8 @@ export function stopListening() {
     if (!listenerId) return;
 
     const listenerRef = ref(db, "listeners/" + listenerId);
+
+    // Remove listener entry
     remove(listenerRef);
 
     listenerId = null;
