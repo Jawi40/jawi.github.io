@@ -262,15 +262,18 @@
                                 startStream();
                             }, 3000);
                         }
+
+                        
 playBtn.addEventListener("click", () => {
     if (!isPlaying) {
-        startStream();      // start audio
-        startListening();   // start Firebase listener
+        startStream();
+        startListening();
     } else {
-        stopStream();       // stop audio (your existing logic)
-        stopListening();    // stop Firebase listener
+        stopStream();
+        stopListening();
     }
 });
+
 
 
 
