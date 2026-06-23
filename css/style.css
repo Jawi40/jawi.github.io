@@ -459,6 +459,6 @@ section h2 {
 
 .player-box,
 .chat-box {
-    width: 520px;       /* same width for both */
-    max-width: 100%;    /* responsive on mobile */
+    width: 500px;
+    max-width: 100%;
 }
