@@ -462,3 +462,15 @@ section h2 {
     width: 480px;
     max-width: 100%;
 }
+
+/* === FORCE PLAYER + CHAT SAME WIDTH AND SIDE-BY-SIDE === */
+.player-box,
+.chat-box {
+    width: 480px;      /* fits perfectly inside your layout */
+    max-width: 100%;
+}
+
+/* Optional: center both columns inside flex-row */
+.flex-row {
+    justify-content: center;
+}
