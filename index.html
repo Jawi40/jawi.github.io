@@ -47,103 +47,103 @@
 
     <!-- SECTION 3: FEATURED STATION -->
     <section>
-       <h2>Featured Station</h2>
+        <h2>Featured Station</h2>
 
-    <div class="flex-row">
+        <div class="flex-row">
 
-        <!-- PLAYER COLUMN -->
-        <div style="flex:1; min-width:280px;">
-            <div id="infin8-console">
+            <!-- PLAYER COLUMN -->
+            <div style="flex:1; min-width:280px;">
+                <div id="infin8-console">
 
-                <div class="console-wrapper">
-                    <div class="console-header">
-                        <div class="console-title">
-                            <span class="flag flag-jm"></span>
-                            <span class="flag flag-mx"></span>
-                            <span class="flag flag-us"></span>
-                            Infin8Radio
+                    <div class="console-wrapper">
+                        <div class="console-header">
+                            <div class="console-title">
+                                <span class="flag flag-jm"></span>
+                                <span class="flag flag-mx"></span>
+                                <span class="flag flag-us"></span>
+                                Infin8Radio
+                            </div>
+
+                            <div class="status-block">
+                                <span class="live-indicator" id="liveIndicator"></span>
+                                <span id="statusLabel">Idle</span><br>
+                                <span id="statusDetail">Ready</span>
+                            </div>
                         </div>
 
-                        <div class="status-block">
-                            <span class="live-indicator" id="liveIndicator"></span>
-                            <span id="statusLabel">Idle</span><br>
-                            <span id="statusDetail">Ready</span>
+                        <div class="controls-row">
+                            <button class="btn main" id="playBtn">▶</button>
+                            <button class="btn" id="retryBtn">↻</button>
+
+                            <div style="flex:1"></div>
+
+                            <div style="font-size:11px;">
+                                Errors: <span id="errorCount">0</span><br>
+                                Last reconnect: <span id="lastReconnect">--</span>
+                            </div>
+                        </div>
+
+                        <div class="equalizer eq-paused" id="equalizer">
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                        </div>
+
+                        <div class="volume-row">
+                            <span>Vol</span>
+                            <input type="range" id="volumeSlider" min="0" max="1" step="0.01">
+                            <span id="volumeValue">--%</span>
+                        </div>
+
+                        <div class="diag-toggle" id="diagToggle">Show Details ▼</div>
+
+                        <div class="diagnostics" id="diagnosticsPanel">
+                            <div>Stream URL: <span id="streamUrlText"></span></div>
+                            <div>Connection: <span id="connectionState">Idle</span></div>
+                            <div>Uptime: <span id="uptime">0s</span></div>
+                            <div>Ear5: <span id="listenerCount">--</span></div>
+                        </div>
+
+                        <div class="console-footer">
+                            <span>Engine: Jamexus-style</span>
+                            <span>Mode: Radio Stream</span>
                         </div>
                     </div>
 
-                    <div class="controls-row">
-                        <button class="btn main" id="playBtn">▶</button>
-                        <button class="btn" id="retryBtn">↻</button>
+                    <!-- AUDIO ELEMENT -->
+                    <audio id="radioAudio"></audio>
 
-                        <div style="flex:1"></div>
-
-                        <div style="font-size:11px;">
-                            Errors: <span id="errorCount">0</span><br>
-                            Last reconnect: <span id="lastReconnect">--</span>
-                        </div>
+                    <!-- PODCAST RSS BUTTON -->
+                    <div class="rss-wrapper">
+                        <a href="https://virtualdj.com/podcast/Don_Jawi/list.xml" 
+                           class="rss-button" 
+                           target="_blank" 
+                           rel="noopener">
+                            🎧 Podcast RSS Feed
+                        </a>
                     </div>
 
-                    <div class="equalizer eq-paused" id="equalizer">
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                        <div class="eq-bar"></div>
-                    </div>
-
-                    <div class="volume-row">
-                        <span>Vol</span>
-                        <input type="range" id="volumeSlider" min="0" max="1" step="0.01">
-                        <span id="volumeValue">--%</span>
-                    </div>
-
-                    <div class="diag-toggle" id="diagToggle">Show Details ▼</div>
-
-                    <div class="diagnostics" id="diagnosticsPanel">
-                        <div>Stream URL: <span id="streamUrlText"></span></div>
-                        <div>Connection: <span id="connectionState">Idle</span></div>
-                        <div>Uptime: <span id="uptime">0s</span></div>
-                        <div>Ear5: <span id="listenerCount">--</span></div>
-                    </div>
-
-                    <div class="console-footer">
-                        <span>Engine: Jamexus-style</span>
-                        <span>Mode: Radio Stream</span>
-                    </div>
                 </div>
-
-                <!-- AUDIO ELEMENT -->
-                <audio id="radioAudio"></audio>
-
-                <!-- PODCAST RSS BUTTON -->
-                <div class="rss-wrapper">
-                    <a href="https://virtualdj.com/podcast/Don_Jawi/list.xml" 
-                       class="rss-button" 
-                       target="_blank" 
-                       rel="noopener">
-                        🎧 Podcast RSS Feed
-                    </a>
-                </div>
-
             </div>
+
+            <!-- CHAT COLUMN (FIXED) -->
+            <div class="chat-box">
+                <script src="https://minnit.chat/js/embed.js?c=1772345192" defer></script>
+
+                <span class="minnit-chat-sembed"
+                    data-chatname="https://organizations.minnit.chat/223717055944276/c/Infin8Radio?embed"
+                    data-style="width:100%; height:500px; max-height:90vh;"
+                    data-version="1.55">
+                </span>
+
+                <p class="powered-by-minnit">
+                    <a href="https://minnit.chat" target="_blank"></a>
+                </p>
+            </div>
+
         </div>
-
-        <!-- CHAT COLUMN (FIXED) -->
-        <div class="chat-box">
-            <script src="https://minnit.chat/js/embed.js?c=1772345192" defer></script>
-
-            <span class="minnit-chat-sembed"
-                data-chatname="https://organizations.minnit.chat/223717055944276/c/Infin8Radio?embed"
-                data-style="width:100%; height:500px; max-height:90vh;"
-                data-version="1.55">
-            </span>
-
-            <p class="powered-by-minnit">
-                <a href="https://minnit.chat" target="_blank"></a>
-            </p>
-        </div>
-
-    </div>
 
     </section>
 
