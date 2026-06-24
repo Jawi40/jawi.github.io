@@ -22,6 +22,34 @@ body {
 }
 
 /* ===========================
+   HEADER (ROOT FIX)
+   =========================== */
+header {
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    padding: 30px 20px;
+    text-align: center; /* FIXED */
+    border-bottom: 3px solid #00e0ff;
+    box-shadow: 0 0 18px #00e0ff;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 56px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #fdda24;
+    text-shadow: 0 0 12px #00e0ff;
+    text-align: center; /* FIXED */
+}
+
+header p {
+    margin-top: 8px;
+    font-size: 20px;
+    opacity: 0.9;
+    text-align: center; /* FIXED */
+}
+
+/* ===========================
    NAVIGATION (RESTORED)
    =========================== */
 nav {
@@ -35,7 +63,7 @@ nav {
 }
 
 nav a {
-    color: #fdda24 !important;
+    color: #fdda24;
     text-decoration: none;
     font-size: 20px;
     font-weight: bold;
@@ -44,7 +72,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #00e0ff !important;
+    color: #00e0ff;
     transform: scale(1.1);
 }
 
