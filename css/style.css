@@ -115,8 +115,9 @@ section:nth-of-type(3) h2 {
     display: flex;
     justify-content: center;
     gap: 30px;
-    flex-wrap: wrap; /* FIX: allows chat to appear on mobile */
+    flex-wrap: nowrap; /* FORCE SIDE-BY-SIDE ON DESKTOP */
 }
+
 
 /* ===========================
    PLAYER + CHAT WIDTH FIX
@@ -353,7 +354,21 @@ section:nth-of-type(3) h2 {
     }
 }
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
+    .flex-row {
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: wrap; /* ALLOW STACKING ON MOBILE */
+    }
+
+    .player-box,
+    .chat-box {
+        width: 100%;
+        max-width: 450px;
+    }
+}
+
+@media (max-width: 600px) {
     nav {
         gap: 20px; /* reduced from 40px */
         padding: 20px 0;
