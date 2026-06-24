@@ -1,13 +1,13 @@
 /* ===========================
-   GLOBAL THEME
+   GLOBAL THEME — JAMAICAN EDITION
    =========================== */
 * { box-sizing: border-box; }
 
 body {
     margin: 0;
     padding: 0;
-    background: #0a0a0a;
-    color: #fdda24;
+    background: #050505;
+    color: #fdda24; /* Jamaican gold */
     font-family: Arial, sans-serif;
     line-height: 1.7;
 }
@@ -22,42 +22,44 @@ body {
 }
 
 /* ===========================
-   HEADER
+   HEADER — JAMAICAN GLOW
    =========================== */
 header {
-    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
-    padding: 40px 20px;
+    background: linear-gradient(135deg, #000, #0d2600); /* deep green tint */
+    padding: 45px 20px;
     text-align: center;
-    border-bottom: 3px solid #00e0ff;
-    box-shadow: 0 0 25px #00e0ff;
+    border-bottom: 4px solid #009b3a; /* Jamaican green */
+    box-shadow: 0 0 25px #009b3a;
 }
 
 header h1 {
     margin: 0;
-    font-size: 60px;
+    font-size: 62px;
     font-weight: bold;
     letter-spacing: 1px;
     color: #fdda24;
-    text-shadow: 0 0 18px #00e0ff;
+    text-shadow: 0 0 18px #fdda24, 0 0 25px #009b3a;
 }
 
 header p {
-    margin-top: 10px;
+    margin-top: 12px;
     font-size: 22px;
     opacity: 0.95;
+    color: #da291c; /* Jamaican red accent */
+    text-shadow: 0 0 10px #da291c;
 }
 
 /* ===========================
-   NAVIGATION
+   NAVIGATION — REGGAE VIBES
    =========================== */
 nav {
     display: flex;
     justify-content: center;
     gap: 35px;
     padding: 20px 0;
-    background: #111;
-    border-bottom: 3px solid #00e0ff;
-    box-shadow: 0 0 15px #00e0ff;
+    background: #0b0b0b;
+    border-bottom: 3px solid #009b3a;
+    box-shadow: 0 0 15px #009b3a;
 }
 
 nav a {
@@ -65,18 +67,18 @@ nav a {
     text-decoration: none;
     font-size: 20px;
     font-weight: bold;
-    text-shadow: 0 0 8px #00e0ff;
+    text-shadow: 0 0 8px #009b3a;
     transition: 0.25s ease;
 }
 
 nav a:hover {
-    color: #00e0ff;
-    text-shadow: 0 0 15px #00e0ff;
+    color: #da291c;
+    text-shadow: 0 0 15px #da291c;
     transform: translateY(-2px);
 }
 
 /* ===========================
-   SECTIONS
+   SECTIONS — CLEAN + WARM
    =========================== */
 section {
     max-width: 900px;
@@ -85,26 +87,26 @@ section {
 }
 
 section h2 {
-    font-size: 34px;
+    font-size: 36px;
     margin-bottom: 20px;
     color: #fdda24;
-    text-shadow: 0 0 10px #fdda24;
+    text-shadow: 0 0 12px #fdda24, 0 0 15px #009b3a;
 }
 
-/* Featured Station spacing */
+/* Featured Station */
 section:nth-of-type(3) h2 {
     text-align: center;
     margin-bottom: 30px;
 }
 
 /* ===========================
-   SECTION DIVIDER
+   SECTION DIVIDER — RASTA STRIPE
    =========================== */
 .section-divider {
     width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, #009b3a, #da291c);
-    box-shadow: 0 0 18px #009b3a, 0 0 18px #da291c;
+    height: 5px;
+    background: linear-gradient(90deg, #009b3a, #fdda24, #da291c);
+    box-shadow: 0 0 20px #009b3a, 0 0 20px #da291c;
     margin: 70px 0;
 }
 
@@ -127,25 +129,27 @@ section:nth-of-type(3) h2 {
     max-width: 100%;
 }
 
-/* Chat polished to match player */
+/* ===========================
+   CHAT BOX — MATCH PLAYER
+   =========================== */
 .chat-box {
-    background: #111;
+    background: #0d0d0d;
     padding: 15px;
     border-radius: 14px;
     border: 2px solid #009b3a;
-    box-shadow: 0 0 15px #009b3a;
+    box-shadow: 0 0 18px #009b3a;
     min-width: 300px;
 }
 
 /* ===========================
-   PLAYER BOX
+   PLAYER BOX — SOUND SYSTEM STYLE
    =========================== */
 .player-box {
-    background: #111;
+    background: #0d0d0d;
     padding: 15px;
     border-radius: 14px;
-    border: 2px solid #009b3a;
-    box-shadow: 0 0 15px #009b3a;
+    border: 2px solid #da291c; /* red accent */
+    box-shadow: 0 0 18px #da291c;
     text-align: center;
 }
 
@@ -157,7 +161,7 @@ section:nth-of-type(3) h2 {
 }
 
 /* ===========================
-   INFIN8RADIO (ADVANCED)
+   INFIN8RADIO — POLISHED
 =========================== */
 
 #infin8-console {
@@ -171,10 +175,10 @@ section:nth-of-type(3) h2 {
 .console-wrapper {
     width: 100%;
     max-width: 450px;
-    background: rgba(10,10,10,0.9);
+    background: rgba(10,10,10,0.95);
     border-radius: 14px;
-    border: 2px solid #1f1f1f;
-    box-shadow: 0 0 25px rgba(0,0,0,0.8);
+    border: 2px solid #009b3a;
+    box-shadow: 0 0 25px #009b3a;
     padding: 12px;
     color: #eee;
 }
@@ -186,7 +190,7 @@ section:nth-of-type(3) h2 {
     align-items: center;
     padding: 8px 12px;
     border-bottom: 1px solid #004d00;
-    background: linear-gradient(90deg, #000, #006400);
+    background: linear-gradient(90deg, #000, #004d00);
     border-radius: 10px 10px 0 0;
 }
 
@@ -216,12 +220,12 @@ section:nth-of-type(3) h2 {
     width: 10px;
     height: 10px;
     border-radius: 3px;
-    background: #b00000;
-    box-shadow: 0 0 8px rgba(255,0,0,0.7);
+    background: #da291c;
+    box-shadow: 0 0 8px rgba(218,41,28,0.7);
 }
 
-.live-ok { background: #00d000 !important; }
-.live-warn { background: #f4d400 !important; }
+.live-ok { background: #009b3a !important; }
+.live-warn { background: #fdda24 !important; }
 
 /* CONTROLS */
 .controls-row {
@@ -290,7 +294,7 @@ section:nth-of-type(3) h2 {
 .diag-toggle {
     margin-top: 12px;
     cursor: pointer;
-    color: #f4d400;
+    color: #fdda24;
     font-size: 13px;
     text-align: center;
 }
@@ -316,10 +320,10 @@ section:nth-of-type(3) h2 {
 .console-footer {
     margin-top: 16px;
     padding: 10px 12px;
-    background: linear-gradient(90deg, #006400, #000);
+    background: linear-gradient(90deg, #009b3a, #000);
     border-top: 2px solid #004d00;
     font-size: 12px;
-    color: #f4d400;
+    color: #fdda24;
     display: flex;
     justify-content: space-between;
     border-radius: 0 0 10px 10px;
@@ -333,7 +337,7 @@ section:nth-of-type(3) h2 {
 
 .rss-button {
     display: inline-block;
-    background-color: #ff9800;
+    background-color: #da291c;
     color: white;
     padding: 12px 20px;
     border-radius: 6px;
@@ -344,12 +348,12 @@ section:nth-of-type(3) h2 {
 }
 
 .rss-button:hover {
-    background-color: #e68900;
+    background-color: #b51f1f;
     transform: scale(1.05);
 }
 
 /* ===========================
-   MOBILE FIX (POLISHED)
+   MOBILE FIX — JAMAICAN POLISH
 =========================== */
 @media (max-width: 600px) {
 
