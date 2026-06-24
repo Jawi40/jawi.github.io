@@ -459,14 +459,14 @@ section h2 {
 
 .player-box,
 .chat-box {
-    width: 450px;
+    width: 425px;
     max-width: 100%;
 }
 
 /* === FORCE PLAYER + CHAT SAME WIDTH AND SIDE-BY-SIDE === */
 .player-box,
 .chat-box {
-    width: 450px;      /* fits perfectly inside your layout */
+    width: 425px;      /* fits perfectly inside your layout */
     max-width: 100%;
 }
 
