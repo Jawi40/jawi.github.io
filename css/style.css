@@ -390,7 +390,6 @@ header {
 }
 
 .site-logo {
-.site-logo {
     width: 100%;        /* fills the header width */
     max-width: 600px;   /* controls desktop size */
     height: auto;
