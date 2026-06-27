@@ -26,7 +26,7 @@ body {
    =========================== */
 header {
     background: linear-gradient(135deg, #000, #0d2600);
-    padding: 45px 20px; /* keeps original height */
+    padding: 5px 0px; /* keeps original height */
     text-align: center;
     border-bottom: 4px solid #009b3a;
     box-shadow: 0 0 25px #009b3a;
