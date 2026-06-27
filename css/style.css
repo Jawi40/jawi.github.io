@@ -390,11 +390,11 @@ header {
 }
 
 .site-logo {
-    width: 300px;
-    max-width: 80%;
+    width: 100%;
+    max-width: 420px;   /* desktop max size */
     height: auto;
     display: block;
-    margin: 0 auto 15px;
+    margin: 0 auto 20px;
     filter: drop-shadow(0 0 12px #009b3a);
 }
 
