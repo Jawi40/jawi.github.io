@@ -395,4 +395,6 @@ header {
     height: auto;
     display: block;
     margin: 0 auto 15px;
+    filter: drop-shadow(0 0 12px #009b3a);
 }
+
