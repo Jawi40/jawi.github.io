@@ -39,10 +39,10 @@ header {
 
 .site-logo {
     width: 100%;
-    max-width: 350px;
+    max-width: 250px;
     height: auto;
     display: block;
-    margin: 0 auto;
+    margin: 0 auto 2px;
     filter: drop-shadow(0 0 12px #009b3a);
 }
 
