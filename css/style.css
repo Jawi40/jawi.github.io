@@ -391,7 +391,7 @@ header {
 
 .site-logo {
     width: 100%;        /* fills the header width */
-    max-width: 600px;   /* controls desktop size */
+    max-width: 450px;   /* controls desktop size */
     height: auto;
     display: block;
     margin: 0 auto 20px;
