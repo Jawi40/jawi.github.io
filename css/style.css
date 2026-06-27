@@ -360,11 +360,17 @@ section h2 {
    MOBILE FIX — JAMAICAN POLISH
    =========================== */
 @media (max-width: 600px) {
+
     section {
         margin: 35px auto;
-        padding: 0 10px; /* smaller padding = cleaner alignment */
+        padding: 0 10px; /* cleaner alignment */
     }
-}
+
+    .flex-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
 
     .player-box,
     .chat-box {
@@ -379,10 +385,5 @@ section h2 {
 
     nav a {
         font-size: 18px;
-    }
-
-    section {
-        margin: 35px auto;
-        padding: 0 20px;
     }
 }
