@@ -261,6 +261,7 @@ section h2 {
   justify-content: center;
   gap: 4px;
   height: 14px;
+   margin-top: 6px;
 }
 
 .eq-bar {
