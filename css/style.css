@@ -230,10 +230,13 @@ section h2 {
 .live-ok { background: #009b3a !important; }
 .live-warn { background: #fdda24 !important; }
 
-/* CONTROLS */
+/* ===========================
+   CONTROLS — iOS FIX
+   =========================== */
 .controls-row {
     display: flex;
     align-items: center;
+    height: 42px; /* force equalizer + button alignment on iOS */
     gap: 10px;
     margin-top: 12px;
 }
@@ -255,22 +258,23 @@ section h2 {
 }
 
 /* ===========================
-   EQUALIZER — FIXED + ALIGNED + UPRIGHT
+   EQUALIZER — FIXED + ALIGNED + UPRIGHT + iOS SAFE
    =========================== */
 .equalizer {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 4px;
-    height: 42px;        /* same height as play button */
-    margin-top: 0;       /* same line */
+    height: 42px;
+    margin-top: 0;
+    -webkit-transform: translateZ(0); /* iOS rendering fix */
 }
 
 .eq-bar {
     width: 6px;
     background: #f4d400;
     border-radius: 3px;
-    height: 6px;         /* base height */
+    height: 6px;
     animation: eqBounce 0.6s infinite ease-in-out;
 }
 
@@ -282,7 +286,7 @@ section h2 {
 
 @keyframes eqBounce {
     0%   { height: 6px; }
-    50%  { height: 32px; }   /* grows upward */
+    50%  { height: 32px; }
     100% { height: 6px; }
 }
 
@@ -292,7 +296,7 @@ section h2 {
 }
 
 /* ===========================
-   VOLUME
+   VOLUME — iOS slider fix
    =========================== */
 .volume-row {
     margin-top: 12px;
@@ -303,6 +307,15 @@ section h2 {
 
 .volume-row input[type="range"] {
     width: 100%;
+    -webkit-appearance: none; /* iOS fix */
+}
+
+.volume-row input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    background: #fdda24;
+    border-radius: 50%;
 }
 
 /* ===========================
