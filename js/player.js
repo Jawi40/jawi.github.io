@@ -95,31 +95,35 @@ function eqStop() {
 }
 
 // =========================
-// STREAM ENGINE (OPTIMIZED)
+// STREAM ENGINE (MOBILE-SAFE)
 // =========================
 export async function startStream() {
     manualStop = false;
     clearTimeout(reconnectTimer);
 
     audio.src = STREAM_URL;
+    audio.muted = false;
+    audio.autoplay = false;
+    audio.playsInline = true;
+
     setStatus("Connecting", "Initializing…", "warn");
     connectionStateEl.textContent = "Connecting";
 
     try {
-    await audio.play();
-} catch (err) {
-    // Mobile fallback
-    audio.muted = false;
-    const playAttempt = audio.play();
-    if (playAttempt !== undefined) {
-        playAttempt.catch(() => {
-            // Still blocked — user must tap again
-            setStatus("Tap to Play", "Mobile browser blocked autoplay", "warn");
-        });
-    }
-}
+        try {
+            await audio.play();
+        } catch (err) {
+            const playAttempt = audio.play();
+            if (playAttempt !== undefined) {
+                playAttempt.catch(() => {
+                    setStatus("Tap to Play", "Mobile browser blocked autoplay", "warn");
+                });
+            }
+        }
 
-        // Firebase listener tracking (kept from old player)
+        isPlaying = true;
+
+        // Firebase listener tracking
         startListening();
 
         playBtn.textContent = "⏸";
@@ -131,6 +135,7 @@ export async function startStream() {
         startUptime();
         fadeIn();
         eqStart();
+
     } catch (err) {
         handleError();
     }
@@ -139,7 +144,6 @@ export async function startStream() {
 export function stopStream() {
     manualStop = true;
 
-    // Firebase listener tracking (kept)
     stopListening();
 
     fadeOut(() => {
