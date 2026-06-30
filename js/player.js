@@ -38,20 +38,6 @@ let startTime = null;
 let lastListenerCount = null;
 
 // =========================
-// AUDIO ENGINE (iOS + Android SAFE)
-// =========================
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-let gainNode = audioCtx.createGain();
-let source = null;
-
-// MUST be called AFTER resume()
-function connectAudioGraph() {
-    if (source) return; // prevent duplicate nodes
-    source = audioCtx.createMediaElementSource(audio);
-    source.connect(gainNode).connect(audioCtx.destination);
-}
-
-// =========================
 // STATUS + UI HELPERS
 // =========================
 function setStatus(label, detail, type = null) {
@@ -78,33 +64,8 @@ function stopUptime() {
 }
 
 // =========================
-// FADE USING GAIN NODE
+// EQUALIZER CONTROL
 // =========================
-function fadeIn() {
-    let v = 0;
-    const target = parseFloat(volumeSlider.value);
-    gainNode.gain.value = 0;
-
-    const interval = setInterval(() => {
-        v += 0.05;
-        gainNode.gain.value = Math.min(v, target);
-        if (v >= target) clearInterval(interval);
-    }, 40);
-}
-
-function fadeOut(callback) {
-    let v = gainNode.gain.value;
-
-    const interval = setInterval(() => {
-        v -= 0.05;
-        gainNode.gain.value = Math.max(v, 0);
-        if (v <= 0) {
-            clearInterval(interval);
-            if (callback) callback();
-        }
-    }, 40);
-}
-
 function eqStart() {
     equalizer.classList.remove("eq-paused");
 }
@@ -114,7 +75,7 @@ function eqStop() {
 }
 
 // =========================
-// STREAM ENGINE
+// STREAM ENGINE (NO WEB AUDIO API)
 // =========================
 export async function startStream() {
     manualStop = false;
@@ -129,8 +90,6 @@ export async function startStream() {
     connectionStateEl.textContent = "Connecting";
 
     try {
-        gainNode.gain.value = parseFloat(volumeSlider.value);
-
         await audio.play();
         isPlaying = true;
 
@@ -143,7 +102,6 @@ export async function startStream() {
         connectionStateEl.textContent = "Playing";
 
         startUptime();
-        fadeIn();
         eqStart();
 
     } catch (err) {
@@ -156,21 +114,19 @@ export function stopStream() {
 
     stopListening();
 
-    fadeOut(() => {
-        audio.pause();
-        audio.removeAttribute("src");
-        audio.load();
+    audio.pause();
+    audio.removeAttribute("src");
+    audio.load();
 
-        isPlaying = false;
-        playBtn.textContent = "▶";
-        playBtn.classList.remove("pulse");
+    isPlaying = false;
+    playBtn.textContent = "▶";
+    playBtn.classList.remove("pulse");
 
-        setStatus("Stopped", "Stopped by user");
-        connectionStateEl.textContent = "Stopped";
+    setStatus("Stopped", "Stopped by user");
+    connectionStateEl.textContent = "Stopped";
 
-        stopUptime();
-        eqStop();
-    });
+    stopUptime();
+    eqStop();
 }
 
 function handleError() {
@@ -215,24 +171,20 @@ onListenerCount((count) => {
 // =========================
 // EVENT LISTENERS
 // =========================
-playBtn.addEventListener("click", async () => {
-    await audioCtx.resume();   // REQUIRED for iOS + Android
-    connectAudioGraph();       // REQUIRED after resume
-
+playBtn.addEventListener("click", () => {
     if (!isPlaying) startStream();
     else stopStream();
 });
 
-retryBtn.addEventListener("click", async () => {
-    await audioCtx.resume();
-    connectAudioGraph();
+retryBtn.addEventListener("click", () => {
     stopStream();
     startStream();
 });
 
+// Native volume (works on iOS + Android)
 volumeSlider.addEventListener("input", () => {
     const v = parseFloat(volumeSlider.value);
-    gainNode.gain.value = v;
+    audio.volume = v;
     volumeValue.textContent = Math.round(v * 100) + "%";
     localStorage.setItem("consoleVolume", v);
 });
@@ -251,6 +203,6 @@ const savedVol = localStorage.getItem("consoleVolume");
 const initVol = savedVol ? parseFloat(savedVol) : 0.8;
 volumeSlider.value = initVol;
 volumeValue.textContent = Math.round(initVol * 100) + "%";
-gainNode.gain.value = initVol;
+audio.volume = initVol;
 
 setStatus("Idle", "Ready");
